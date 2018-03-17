@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import RecipeListElement from "./RecipeListElement";
 import RecipeDetails from "./RecipeDetails";
+import RecipeIngredients from "./RecipeIngredients";
 import axios from "axios";
 
 class RecipeMagic extends Component {
@@ -15,6 +16,7 @@ class RecipeMagic extends Component {
         this.state = {
             searchValue: "",
             recipesList: [],
+            ingredientsList: [],
             recipe: {},
             recipeLoaded: false,
         };
@@ -25,6 +27,7 @@ class RecipeMagic extends Component {
         this.handleRecipeData = this.handleRecipeData.bind(this);
         this.updateSearchValue = this.updateSearchValue.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        this.addIngredientsToList = this.addIngredientsToList.bind(this);
     }
 
     updateSearchValue(event) {
@@ -35,11 +38,9 @@ class RecipeMagic extends Component {
 
     handleRequest(response) {
         this.setState({recipesList: response.data.recipes});
-        console.log(response);
     }
 
     handleRecipeData(response) {
-        console.log(response);
         this.setState({recipe: response.data.recipe});
         this.setState({recipeLoaded: true});
     }
@@ -57,16 +58,17 @@ class RecipeMagic extends Component {
     }
 
 
+    addIngredientsToList(value){
+        this.setState({ingredientsList: this.state.ingredientsList.concat([value])});
+    }
+
     render() {
         let utilRecipeContainer = this.state.recipeLoaded ?
             <RecipeDetails handleClose={this.handleClose} recipe={this.state.recipe} />
             : "";
         return (
             <div>
-                <label>What do you have in your fridge?</label>
-                <div>
-                    <input onChange = {this.updateSearchValue} id="recipeSearch" type="text"/>
-                </div>
+                <RecipeIngredients addIngredientsToList={this.addIngredientsToList} updateSearchValue={this.updateSearchValue} />
                 {utilRecipeContainer}
                 <ul>
                     {this.state.recipesList.map((recipe) =>
