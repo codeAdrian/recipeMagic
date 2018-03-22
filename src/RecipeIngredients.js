@@ -1,28 +1,23 @@
 import React,{Component} from "react";
 
 class RecipeIngredients extends Component {
-
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            inputValue: ""
-        };
-
-        this.changeInputValue = this.changeInputValue.bind(this);
+            inputValue: this.props.inputValue
+        }
     }
-
-    changeInputValue(event) {
-        this.setState({inputValue: event.target.value})
+    componentWillReceiveProps(nextProps) {
+        this.setState({inputValue: nextProps.inputValue});
     }
-
-    render() {
+            render() {
         return <div>
             <label>What do you have in your fridge?</label>
-            <div>
-                <input onChange={this.changeInputValue} placeholder="Type Ingredients To Add" />
-                <button onClick={() => this.props.addIngredientsToList(this.state.inputValue)}>Add Ingredient</button>
+            <form>
+                <input value={this.state.inputValue} onChange={this.props.changeInputValue} placeholder="Type Ingredients To Add" />
+                <input type="submit" onClick={this.props.addIngredientsToList} value="Add Ingredient" />
                 <input onChange = {this.props.updateSearchValue} id="recipeSearch" type="text"/>
-            </div>
+            </form>
         </div>
     }
 }

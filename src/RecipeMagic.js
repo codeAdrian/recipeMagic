@@ -14,13 +14,14 @@ class RecipeMagic extends Component {
         this.apiKey = "00e87db25f69ecd8de56fbc93c280bf";
 
         this.state = {
-            searchValue: "",
+            inputValue: "",
             recipesList: [],
             ingredientsList: [],
             recipe: {},
             recipeLoaded: false,
         };
 
+        this.changeInputValue = this.changeInputValue.bind(this);
         this.searchRecipes = this.searchRecipes.bind(this);
         this.getRecipeData = this.getRecipeData.bind(this);
         this.handleRequest = this.handleRequest.bind(this);
@@ -58,8 +59,16 @@ class RecipeMagic extends Component {
     }
 
 
-    addIngredientsToList(value){
-        this.setState({ingredientsList: this.state.ingredientsList.concat([value])});
+    addIngredientsToList(e){
+        this.setState({ingredientsList: this.state.ingredientsList.concat([this.state.inputValue])}, ()=>
+            this.setState({inputValue:""})
+        );
+        e.preventDefault();
+    }
+
+    changeInputValue(event) {
+        console.log("change: " + this.state.inputValue);
+        this.setState({inputValue: event.target.value})
     }
 
     render() {
@@ -68,7 +77,7 @@ class RecipeMagic extends Component {
             : "";
         return (
             <div>
-                <RecipeIngredients addIngredientsToList={this.addIngredientsToList} updateSearchValue={this.updateSearchValue} />
+                <RecipeIngredients inputValue={this.inputValue} changeInputValue = {this.changeInputValue} addIngredientsToList={this.addIngredientsToList} updateSearchValue={this.updateSearchValue} />
                 {utilRecipeContainer}
                 <ul>
                     {this.state.recipesList.map((recipe) =>
