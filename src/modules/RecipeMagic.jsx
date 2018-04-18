@@ -11,7 +11,9 @@ class RecipeMagic extends Component {
     state = {
         searchValue: '',
         recipesList: [],
-        recipeLoaded: false
+        ingredientsList: [],
+        recipeLoaded: false,
+        loadedRecipe: {}
     };
 
     updateSearchValue = event => {
@@ -28,22 +30,96 @@ class RecipeMagic extends Component {
         this.setState({ recipesList: recipesList });
     };
 
+    handleAddToList = value => {
+        let currentIngredients = this.state.ingredientsList;
+        currentIngredients.push(value);
+        this.setState(
+            { ingredientsList: currentIngredients },
+            this.searchRecipes
+        );
+    };
+
+    handleRemoveFromList = event => {
+        const valueToRemove = event.target.value;
+        let currentIngredients = this.state.ingredientsList;
+        var index = currentIngredients.indexOf(valueToRemove);
+        currentIngredients.splice(index, 1);
+
+        this.setState(
+            { ingredientsList: currentIngredients },
+            this.searchRecipes
+        );
+    };
+
     searchRecipes = () => {
+        /* ingr	no	integer	Maximum number of ingredients. Example: ingr=5 */
         axios
             .get(
-                `https://api.edamam.com/search?q=${
-                    this.state.searchValue
-                }&app_id=${this.appId}&app_key=${this.apiKey}`
+                `https://api.edamam.com/search?q=${this.state.ingredientsList.join(
+                    ','
+                )}&app_id=${this.appId}&app_key=${this.apiKey}`
             )
-            .then(this.handleSearchRequest);
+            .then(response => {
+                console.log('array', this.state.ingredientsList.join(','));
+                console.log(response);
+                this.handleSearchRequest(response);
+            });
+    };
+
+    handleNutritionInfo = event => {
+        const { value } = event.target;
+
+        this.setState(
+            { loadedRecipe: this.state.recipesList[value].recipe },
+            () => console.log(this.state.loadedRecipe)
+        );
     };
 
     render() {
         const recipesList = this.state.recipesList;
+        const loadedRecipe = this.state.loadedRecipe;
+
         return (
             <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nutrient</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {Object.keys(loadedRecipe).length !== 0
+                            ? Object.keys(loadedRecipe.totalDaily).map(key => (
+                                  <tr>
+                                      <td>
+                                          {loadedRecipe.totalDaily[key].label}
+                                      </td>
+                                      <td>
+                                          {loadedRecipe.totalDaily[
+                                              key
+                                          ].quantity.toFixed(0)}
+                                          {loadedRecipe.totalDaily[key].unit}
+                                      </td>
+                                  </tr>
+                              ))
+                            : null}
+                    </tbody>
+                </table>
                 <h1>Recipe Magic</h1>
-                <Search updateSearchValue={this.updateSearchValue} />
+                <Search
+                    handleAddToList={this.handleAddToList}
+                    ingredientsList={this.state.ingredientsList}
+                    updateSearchValue={this.updateSearchValue}
+                />
+                {this.state.ingredientsList.map(ingredient => (
+                    <button
+                        onClick={this.handleRemoveFromList}
+                        key={ingredient}
+                    >
+                        {ingredient}
+                    </button>
+                ))}
                 <ul>
                     {recipesList.map((recipe, index) => (
                         <li key={index}>
@@ -59,6 +135,15 @@ class RecipeMagic extends Component {
                                     )
                                 )}
                             </ul>
+                            <a href={recipe.recipe.url} target="_blank">
+                                View Recipe
+                            </a>
+                            <button
+                                onClick={this.handleNutritionInfo}
+                                value={index}
+                            >
+                                Nutritional Info
+                            </button>
                         </li>
                     ))}
                 </ul>
