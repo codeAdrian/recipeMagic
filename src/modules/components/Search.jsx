@@ -17,14 +17,16 @@ class Search extends Component {
     render() {
         return (
             <div>
-                <label>What do you have in your fridge?</label>
+                <label>Ingredient</label>
                 <input
                     value={this.state.inputValue}
                     onChange={this.handleOnChange}
                     id="recipeSearch"
                     type="text"
                 />
-                <button onClick={this.handleOnClick}>Add to list</button>
+                <button className="button" onClick={this.handleOnClick}>
+                    Add ingredient
+                </button>
             </div>
         );
     }
