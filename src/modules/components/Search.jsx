@@ -6,28 +6,33 @@ class Search extends Component {
     };
 
     handleOnChange = event => {
-        this.setState({ inputValue: event.target.value });
+        const inputValue = event.target.value;
+        const lastCharacter = inputValue[inputValue.length - 1];
+        lastCharacter !== ','
+            ? this.setState({ inputValue: event.target.value })
+            : this.handleOnClick();
     };
 
-    handleOnClick = () => {
+    handleOnClick = event => {
+        if (event) event.preventDefault();
         this.props.handleAddToList(this.state.inputValue);
         this.setState({ inputValue: '' });
     };
 
     render() {
         return (
-            <div>
-                <label>Ingredient</label>
+            <form onSubmit={this.handleOnClick}>
                 <input
                     value={this.state.inputValue}
                     onChange={this.handleOnChange}
+                    placeholder="Chicken, potato, beans"
                     id="recipeSearch"
                     type="text"
                 />
                 <button className="button" onClick={this.handleOnClick}>
                     Add ingredient
                 </button>
-            </div>
+            </form>
         );
     }
 }

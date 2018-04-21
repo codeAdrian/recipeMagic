@@ -13,6 +13,7 @@ class RecipeMagic extends Component {
         recipesList: [],
         ingredientsList: [],
         recipeLoaded: false,
+        ingredientNumber: 0,
         loadedRecipe: {}
     };
 
@@ -40,15 +41,26 @@ class RecipeMagic extends Component {
     };
 
     handleRemoveFromList = event => {
-        const valueToRemove = event.target.value;
+        const valueToRemove = event.currentTarget.value;
+        console.log(valueToRemove);
         let currentIngredients = this.state.ingredientsList;
         var index = currentIngredients.indexOf(valueToRemove);
-        currentIngredients.splice(index, 1);
 
-        this.setState(
-            { ingredientsList: currentIngredients },
-            this.searchRecipes
-        );
+        if (index > -1) {
+            currentIngredients.splice(index, 1);
+            console.log('With removed', currentIngredients);
+
+            this.setState(
+                { ingredientsList: currentIngredients },
+                this.searchRecipes
+            );
+        }
+    };
+
+    handleIngredientNumber = event => {
+        const value = event.currentTarget.value;
+        console.log(value);
+        this.setState({ ingredientNumber: value }, this.searchRecipes);
     };
 
     searchRecipes = () => {
@@ -59,17 +71,11 @@ class RecipeMagic extends Component {
         if (this.state.ingredientNumber > 0) {
             query += `&ingr=${this.state.ingredientNumber}`;
         }
-        axios
-            .get(
-                `https://api.edamam.com/search?q=${this.state.ingredientsList.join(
-                    ','
-                )}&app_id=${this.appId}&app_key=${this.apiKey}`
-            )
-            .then(response => {
-                console.log('array', this.state.ingredientsList.join(','));
-                console.log(response);
-                this.handleSearchRequest(response);
-            });
+        console.log(query);
+        axios.get(query).then(response => {
+            console.log(response);
+            this.handleSearchRequest(response);
+        });
     };
 
     handleClose = () => {
@@ -92,51 +98,75 @@ class RecipeMagic extends Component {
         return (
             <div>
                 {Object.keys(loadedRecipe).length !== 0 ? (
-                    <div className="recipeModal">
-                        <button
-                            className="recipeModal__close"
-                            onClick={this.handleClose}
-                        >
-                            <i class="fas fa-times" />
-                        </button>
-
-                        <div className="modalSection">
-                            <h2 className="modalSection__title">Ingredients</h2>
-                            <ul className="recipeModal__list">
-                                {loadedRecipe.ingredientLines.map(
-                                    (ingredient, index) => (
-                                        <li
-                                            className="recipeModal__listItem"
-                                            key={index}
-                                        >
-                                            {ingredient}
-                                        </li>
-                                    )
-                                )}
-                            </ul>
-                            <a
-                                className="button button--cta"
-                                href={loadedRecipe.url}
-                                target="_blank"
+                    <div>
+                        <div className="recipeModal__overlay" />
+                        <div className="recipeModal">
+                            <button
+                                className="recipeModal__close"
+                                onClick={this.handleClose}
                             >
-                                View Recipe
-                                <i class="fas fa-chevron-right" />
-                            </a>
-                        </div>
-                        <div className="modalSection">
-                            <h2 className="modalSection__title">
-                                Nutrition Values
-                            </h2>
-                            <table className="recipeModal__table">
-                                <thead>
-                                    <tr>
-                                        <th>Nutrient</th>
-                                        <th>Value</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {Object.keys(loadedRecipe.totalDaily).map(
-                                        key => (
+                                <i className="fas fa-times" />
+                            </button>
+
+                            <div className="modalSection">
+                                <h2 className="modalSection__title">
+                                    Information
+                                </h2>
+                                <dl>
+                                    <dt>Title: </dt>
+                                    <dd>{loadedRecipe.label}</dd>
+
+                                    <dt>Source:</dt>
+                                    <dd>{loadedRecipe.source}</dd>
+
+                                    <dt>Servings:</dt>
+                                    <dd>{loadedRecipe.yield}</dd>
+
+                                    <dt>Preparation time:</dt>
+                                    <dd>{loadedRecipe.totalTime} minutes</dd>
+                                </dl>
+                            </div>
+
+                            <div className="modalSection">
+                                <h2 className="modalSection__title">
+                                    Ingredients
+                                </h2>
+                                <ul className="recipeModal__list">
+                                    {loadedRecipe.ingredientLines.map(
+                                        (ingredient, index) => (
+                                            <li
+                                                className="recipeModal__listItem"
+                                                key={index}
+                                            >
+                                                {ingredient}
+                                            </li>
+                                        )
+                                    )}
+                                </ul>
+                                <a
+                                    className="button button--cta"
+                                    href={loadedRecipe.url}
+                                    target="_blank"
+                                >
+                                    View Recipe
+                                    <i className="fas fa-chevron-right" />
+                                </a>
+                            </div>
+                            <div className="modalSection">
+                                <h2 className="modalSection__title">
+                                    Nutrition Values
+                                </h2>
+                                <table className="recipeModal__table">
+                                    <thead>
+                                        <tr>
+                                            <th>Nutrient</th>
+                                            <th>Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {Object.keys(
+                                            loadedRecipe.totalDaily
+                                        ).map(key => (
                                             <tr>
                                                 <td>
                                                     {
@@ -156,53 +186,76 @@ class RecipeMagic extends Component {
                                                     }
                                                 </td>
                                             </tr>
-                                        )
-                                    )}
-                                </tbody>
-                            </table>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 ) : null}
 
-                <h1>Recipe Magic</h1>
-                <Search
-                    handleAddToList={this.handleAddToList}
-                    ingredientsList={this.state.ingredientsList}
-                    updateSearchValue={this.updateSearchValue}
-                />
-                <label>Filter by ingredient number:</label>
-                <input min="0" id="ingredientNumber" type="number" />
-                {this.state.ingredientsList.map(ingredient => (
-                    <button
-                        className="button button--remove"
-                        onClick={this.handleRemoveFromList}
-                        key={ingredient}
-                    >
-                        <i class="fas fa-times" />
-                        {ingredient}
-                    </button>
-                ))}
-                <ul className="recipesList">
-                    {recipesList.map((recipe, index) => (
-                        <li
-                            className="recipesList__item"
-                            key={index}
-                            value={index}
-                            onClick={this.handleNutritionInfo}
-                        >
-                            <div className="recipesList__wrapper">
-                                <img
-                                    className="recipesList__image"
-                                    src={recipe.recipe.image}
-                                    alt={recipe.recipe.label}
-                                />
-                                <h2 className="recipesList__title">
-                                    {recipe.recipe.label}
-                                </h2>
-                            </div>
-                        </li>
-                    ))}
-                </ul>
+                <div>
+                    <h1>Recipe Magic</h1>
+                    <Search
+                        handleAddToList={this.handleAddToList}
+                        ingredientsList={this.state.ingredientsList}
+                        updateSearchValue={this.updateSearchValue}
+                    />
+                </div>
+                {this.state.ingredientsList.length > 0 ? (
+                    <div className="columnsWrapper">
+                        <aside className="columnsWrapper__sidebar">
+                            <label>Max number of ingredients:</label>
+                            <input
+                                min="0"
+                                id="ingredientNumber"
+                                type="number"
+                                onChange={this.handleIngredientNumber}
+                            />
+                            {this.state.ingredientsList.map(ingredient => (
+                                <button
+                                    className="button button--remove"
+                                    value={ingredient}
+                                    onClick={this.handleRemoveFromList}
+                                    key={ingredient}
+                                >
+                                    <i className="fas fa-times" />
+                                    {ingredient}
+                                </button>
+                            ))}
+                        </aside>
+                        <main className="columnsWrapper__content">
+                            <ul className="recipesList">
+                                {recipesList.map((recipe, index) => (
+                                    <li
+                                        className="recipesList__item"
+                                        key={index}
+                                        value={index}
+                                        onClick={this.handleNutritionInfo}
+                                    >
+                                        <div className="recipesList__wrapper">
+                                            <img
+                                                className="recipesList__image"
+                                                src={recipe.recipe.image}
+                                                alt={recipe.recipe.label}
+                                            />
+                                            <h2 className="recipesList__title">
+                                                {recipe.recipe.label.length >
+                                                40 ? (
+                                                    <small>
+                                                        {recipe.recipe.label}
+                                                    </small>
+                                                ) : (
+                                                    recipe.recipe.label
+                                                )}
+                                            </h2>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        </main>
+                    </div>
+                ) : null}
             </div>
         );
     }

@@ -1,6 +1,15 @@
+/*       4ABDAC - blue        */
+/*       DFDCE3 - white       */
+/*       F78733 - yellow      */
+/*       FC4A1A - red         */
+
 body {
     font-family: 'Raleway', sans-serif;
     padding: 0 1em;
+    color: #fff;
+    background-color: #4abdac;
+    font-size: 1.15em;
+    line-height: 1.5em;
 }
 
 h1,
@@ -15,12 +24,20 @@ h6 {
 }
 
 h1 {
-    padding: 0 0 0.5em;
-    font-size: 5em;
+    text-align: center;
+    font-size: 2.5em;
+    line-height: 1.5em;
 }
 
 h2 {
     font-size: 2.5em;
+    line-height: 1.1em;
+}
+
+small {
+    display: block;
+    font-size: 0.75em;
+    line-height: 1.5em;
 }
 
 table,
@@ -35,8 +52,8 @@ table {
 
 td,
 th {
-    padding: 1em 2em;
-    border-bottom: 1px solid #000;
+    padding: 0.75em 1.25em;
+    border-bottom: 1px solid #1d1d1d;
 }
 
 th {
@@ -82,31 +99,21 @@ input {
     }
 }
 
-@media screen and (min-width: 620px) {
-    .recipesList__item {
-        flex-basis: 33.333%;
-    }
-}
-
-@media screen and (min-width: 920px) {
-    .recipesList__item {
-        flex-basis: 25%;
-    }
-}
-
 @media screen and (min-width: 1200px) {
     .recipesList__item {
-        flex-basis: 20%;
+        flex-basis: 25%;
     }
 }
 
 .recipesList__wrapper {
     background-color: #000;
     position: relative;
+    overflow: hidden;
 }
 
 .recipesList__image {
     transition: opacity 0.3s ease;
+    backface-visibility: hidden;
 }
 
 .recipesList__title {
@@ -123,7 +130,7 @@ input {
     transition: opacity 0.3s ease;
     left: 0;
     right: 0;
-    padding: 1em;
+    padding: 0.75em;
 }
 
 .recipesList__item:hover {
@@ -163,13 +170,14 @@ html {
     left: 0;
     bottom: 0;
     overflow-y: auto;
-    background-color: #fff;
+    background-color: #dfdce3;
+    color: #1d1d1d;
     z-index: 5;
-    box-shadow: 0 0 1em 0.25em #000;
+    box-shadow: 0 0 1em 0.25em #1d1d1d;
     width: 480px;
     margin: 0 auto;
     height: 100%;
-    max-height: 100vw;
+    max-height: 100vh;
 }
 
 .recipeModal__list {
@@ -182,11 +190,11 @@ html {
 }
 
 .recipeModal::-webkit-scrollbar-track {
-    background-color: #ddd;
+    background-color: #f78733;
 }
 
 .recipeModal::-webkit-scrollbar-thumb {
-    background-color: #000;
+    background-color: #fc4a1a;
     outline: 0;
 }
 
@@ -198,15 +206,22 @@ button {
 
 .button {
     text-align: center;
-    color: #000;
+    color: #1d1d1d;
     text-decoration: none;
     cursor: pointer;
-    background-color: #aaa;
+    background-color: #f78733;
+    color: #fff;
     padding: 0.5em 1em;
+    font-weight: 600;
 }
 
 .button--cta {
     display: block;
+    font-family: 'Lobster', cursive;
+    font-size: 1.5em;
+    background-color: #fc4a1a;
+    color: #fff;
+    font-weight: 100;
 }
 
 .button--remove {
@@ -220,6 +235,8 @@ button {
     display: inline-block;
     vertical-align: middle;
     padding-right: 0.5em;
+    padding-left: 0.5em;
+    font-size: 0.75em;
 }
 
 .modalSection {
@@ -228,10 +245,60 @@ button {
 
 .modalSection__title {
     padding-bottom: 0.75em;
+    padding-right: 2em;
 }
 
 .recipeModal__close {
     position: absolute;
-    top: 1em;
+    padding: 0.9em 1em 0.7em;
+    background: #f78733;
+    color: #fff;
+    top: 1.5em;
     right: 1em;
+}
+
+.recipeModal__overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #1d1d1d;
+    opacity: 0.75;
+    z-index: 3;
+}
+
+dl {
+    margin: 0;
+}
+
+dt,
+dd {
+    margin: 0;
+}
+
+dt {
+    padding-bottom: 0.25em;
+    font-weight: bold;
+}
+
+dd {
+    padding-bottom: 1em;
+}
+
+dl dd:last-child {
+    padding-bottom: 0;
+}
+
+.columnsWrapper {
+    display: flex;
+}
+
+.columnsWrapper__sidebar {
+    flex: 1 1 20%;
+    padding-right: 1em;
+}
+
+.columnsWrapper__content {
+    flex: 4 1 80%;
 }
