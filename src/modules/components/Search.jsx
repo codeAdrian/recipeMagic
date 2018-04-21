@@ -29,7 +29,10 @@ class Search extends Component {
                     id="recipeSearch"
                     type="text"
                 />
-                <button className="button" onClick={this.handleOnClick}>
+                <button
+                    className="button button--cta"
+                    onClick={this.handleOnClick}
+                >
                     Add ingredient
                 </button>
             </form>
