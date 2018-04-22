@@ -5,6 +5,10 @@ const SearchResults = ({
     handleRemoveFromList,
     ingredientsList,
     recipesList,
+    page,
+    isLoading,
+    totalPages,
+    handlePageChange,
     handleNutritionInfo
 }) => (
     <div className="columnsWrapper">
@@ -12,6 +16,7 @@ const SearchResults = ({
             <h2>Filters</h2>
             <label>Max number of ingredients:</label>
             <input
+                placeholder="N/A"
                 min="0"
                 id="ingredientNumber"
                 type="number"
@@ -58,6 +63,33 @@ const SearchResults = ({
                     </li>
                 ))}
             </ul>
+            <div className="toolbar">
+                <button
+                    className="button"
+                    value={-1}
+                    onClick={handlePageChange}
+                    disabled={page === 0 ? 'disabled' : false}
+                >
+                    Previous Page
+                </button>
+
+                <div className="toolbar__amount">{`Page ${page +
+                    1} of ${totalPages}`}</div>
+
+                <button
+                    className="button"
+                    value={1}
+                    onClick={handlePageChange}
+                    disabled={page + 1 === totalPages ? 'disabled' : false}
+                >
+                    Next Page
+                </button>
+            </div>
+            {isLoading ? (
+                <div className="loading">
+                    <img src="images/loading.svg" alt="Loading" />
+                </div>
+            ) : null}
         </main>
     </div>
 );

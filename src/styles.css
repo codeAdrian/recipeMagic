@@ -20,12 +20,12 @@ h6 {
     font-weight: normal;
     font-family: 'Lobster', cursive;
     margin: 0;
-    text-shadow: 2px 2px #fc4a1a;
 }
 
 h1 {
     font-size: 2.5em;
     line-height: 1.5em;
+    text-shadow: 2px 2px #fc4a1a;
 }
 
 h2 {
@@ -137,6 +137,22 @@ input {
 
 .recipeModal__listItem {
     padding-bottom: 1em;
+    list-style: none;
+}
+
+.recipeModal__listItem:before {
+    content: '\f0c8';
+    font-family: Font Awesome\ 5 Free;
+    margin-left: -1.5em;
+    padding-right: 0.75em;
+}
+
+.haveIngredient {
+    font-weight: 800;
+}
+
+.haveIngredient:before {
+    content: '\f14a';
 }
 
 .recipesList__item:hover img {
@@ -149,13 +165,16 @@ input {
 
 .header {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    padding: 0.5em 0;
-    margin-bottom: 1.5em;
+    padding: 0.5em 1.5em;
     text-align: center;
     background-color: #f78733;
     box-shadow: 0 0 1em 0 #000;
+}
+
+.header + * {
+    padding-top: 1.5em;
 }
 
 .header input {
@@ -176,21 +195,26 @@ html {
     box-sizing: inherit;
 }
 
-.recipeModal {
+.recipeModal .recipeModal__content {
     position: fixed;
     padding: 1.5em 1.5em 0;
     top: 0;
-    left: 0;
+    transform: translate3d(-100%, 0, 0);
     bottom: 0;
     overflow-y: auto;
     background-color: #dfdce3;
     color: #1d1d1d;
     z-index: 5;
     box-shadow: 0 0 1em 0.25em #1d1d1d;
-    width: 480px;
+    width: 568px;
     margin: 0 auto;
     height: 100%;
     max-height: 100vh;
+    transition: transform 0.3s ease;
+}
+
+.recipeModal--active .recipeModal__content {
+    transform: translate3d(0, 0, 0);
 }
 
 .recipeModal__list {
@@ -198,15 +222,15 @@ html {
     padding-bottom: 1em;
 }
 
-.recipeModal::-webkit-scrollbar {
+.recipeModal__content::-webkit-scrollbar {
     width: 0.75em;
 }
 
-.recipeModal::-webkit-scrollbar-track {
+.recipeModal__content::-webkit-scrollbar-track {
     background-color: #f78733;
 }
 
-.recipeModal::-webkit-scrollbar-thumb {
+.recipeModal__content::-webkit-scrollbar-thumb {
     background-color: #fc4a1a;
     outline: 0;
 }
@@ -235,6 +259,10 @@ button {
     color: #fff;
     padding: 0.5em 1em;
     font-weight: 600;
+}
+
+.button[disabled] {
+    visibility: hidden;
 }
 
 .button--cta {
@@ -283,9 +311,17 @@ button {
     right: 0;
     left: 0;
     bottom: 0;
-    background-color: #1d1d1d;
+    background-color: #000;
     opacity: 0.75;
     z-index: 3;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.recipeModal--active .recipeModal__overlay {
+    pointer-events: all;
+    opacity: 0.8;
 }
 
 dl {
@@ -316,22 +352,77 @@ dl dd:last-child {
 
 .columnsWrapper__sidebar input {
     margin-bottom: 2em;
+    max-width: 5.5em;
 }
 
 .columnsWrapper {
     display: flex;
+    position: relative;
+    min-height: 100vh;
 }
 
 .columnsWrapper__sidebar {
     flex: 1 1 20%;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
 }
 
 .columnsWrapper__content {
+    padding-right: 1.5em;
     flex: 4 1 80%;
+}
+
+.loading {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.6);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.loading img {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 label {
     display: block;
     font-weight: 800;
     padding-bottom: 1em;
+}
+
+.landing {
+    padding: 2em;
+    text-align: center;
+}
+
+.landing__subtitle {
+    font-size: 3em;
+    line-height: 1.5;
+    padding-bottom: 0.25em;
+}
+
+.landing__title {
+    font-size: 7em;
+    line-height: 1.5;
+    padding-bottom: 0.1em;
+}
+
+.toolbar {
+    margin: 0.5em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.toolbar__amount {
+    font-weight: 800;
+    font-size: 1.1em;
 }

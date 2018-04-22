@@ -15,8 +15,10 @@ class Search extends Component {
 
     handleOnClick = event => {
         if (event) event.preventDefault();
-        this.props.handleAddToList(this.state.inputValue);
-        this.setState({ inputValue: '' });
+        if (this.state.inputValue.length > 2) {
+            this.props.handleAddToList(this.state.inputValue);
+            this.setState({ inputValue: '' });
+        }
     };
 
     render() {
@@ -25,7 +27,7 @@ class Search extends Component {
                 <input
                     value={this.state.inputValue}
                     onChange={this.handleOnChange}
-                    placeholder="Chicken, potato, beans"
+                    placeholder="Chicken, Potatoes, Beans"
                     id="recipeSearch"
                     type="text"
                 />
