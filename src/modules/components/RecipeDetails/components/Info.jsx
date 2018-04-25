@@ -2,20 +2,27 @@ import React from 'react';
 
 const Info = ({ label, source, yields, totalTime }) => (
     <div className="modalSection">
-        <h2 className="modalSection__title">Information</h2>
-        <dl>
-            <dt>Title: </dt>
-            <dd>{label}</dd>
+        <h2 className="modalSection__title modalSection__title--main">
+            {label}
+        </h2>
+        <div className="infoWrapper">
+            <div className="infoWrapper__section">
+                <strong>By: </strong>
+                <span>{source}</span>
+            </div>
 
-            <dt>Source:</dt>
-            <dd>{source}</dd>
+            <div className="infoWrapper__columns">
+                <div>
+                    <i class="fas fa-utensils" />
+                    {yields > 0 ? `${yields} servings` : 'N/A servings'}
+                </div>
 
-            <dt>Servings:</dt>
-            <dd>{yields}</dd>
-
-            <dt>Preparation time:</dt>
-            <dd>{totalTime} minutes</dd>
-        </dl>
+                <div>
+                    <i class="far fa-clock" />
+                    {totalTime > 0 ? `${totalTime} minutes` : 'N/A minutes'}
+                </div>
+            </div>
+        </div>
     </div>
 );
 

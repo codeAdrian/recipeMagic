@@ -21,15 +21,6 @@ class RecipeMagic extends Component {
         loadedRecipe: {}
     };
 
-    updateSearchValue = event => {
-        this.setState({ searchValue: encodeURI(event.target.value) });
-        clearTimeout(this.searchTimeout);
-        this.searchTimeout = setTimeout(
-            this.searchRecipes,
-            this.searchTimeoutValue
-        );
-    };
-
     handleSearchRequest = response => {
         const recipesList = response.data.hits;
         const totalPages = Math.ceil(response.data.count / 12);
@@ -47,13 +38,11 @@ class RecipeMagic extends Component {
 
     handleRemoveFromList = event => {
         const valueToRemove = event.currentTarget.value;
-        console.log(valueToRemove);
         let currentIngredients = this.state.ingredientsList;
         var index = currentIngredients.indexOf(valueToRemove);
 
         if (index > -1) {
             currentIngredients.splice(index, 1);
-            console.log('With removed', currentIngredients);
 
             this.setState(
                 { ingredientsList: currentIngredients, page: 0 },
@@ -80,11 +69,20 @@ class RecipeMagic extends Component {
             if (this.state.ingredientNumber > 0) {
                 query += `&ingr=${this.state.ingredientNumber}`;
             }
-            console.log(query);
-            axios.get(query).then(response => {
-                this.setState({ isLoading: false });
-                this.handleSearchRequest(response);
-            });
+
+            axios
+                .get(query)
+                .then(response => {
+                    this.setState({ isLoading: false });
+                    this.handleSearchRequest(response);
+                })
+                .catch(function(error) {
+                    console.log(error);
+                    alert(
+                        'API Free Limit reached :( Page will now refresh in order to avoid issues. Sorry for the inconvenience.'
+                    );
+                    window.location.reload();
+                });
         });
     };
 
@@ -131,7 +129,6 @@ class RecipeMagic extends Component {
                     <Search
                         handleAddToList={this.handleAddToList}
                         ingredientsList={this.state.ingredientsList}
-                        updateSearchValue={this.updateSearchValue}
                     />
                 </header>
                 {this.state.ingredientsList.length > 0 ? (

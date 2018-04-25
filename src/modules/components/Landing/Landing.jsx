@@ -6,9 +6,8 @@ const Landing = () => (
         <h3 className="landing__subtitle">
             Start by adding ingredients<br />and see what comes up!
         </h3>
-        <p />
         <p>
-            Made with <i class="fas fa-heart" /> by Adrian Bece
+            Made with <i className="fas fa-heart" /> by Adrian Bece
         </p>
     </main>
 );

@@ -16,19 +16,21 @@ const Sidebar = ({
             onChange={handleIngredientNumber}
         />
         <label>Ingredients:</label>
-        {ingredientsList.map(ingredient => (
-            <div>
-                <button
-                    className="button button--remove"
-                    value={ingredient}
-                    onClick={handleRemoveFromList}
-                    key={ingredient}
-                >
-                    <i className="fas fa-times" />
-                    {ingredient}
-                </button>
-            </div>
-        ))}
+        <ul>
+            {ingredientsList.map(ingredient => (
+                <li>
+                    <button
+                        className="button button--remove"
+                        value={ingredient}
+                        onClick={handleRemoveFromList}
+                        key={ingredient}
+                    >
+                        <i className="fas fa-times" />
+                        {ingredient}
+                    </button>
+                </li>
+            ))}
+        </ul>
     </aside>
 );
 export default Sidebar;
