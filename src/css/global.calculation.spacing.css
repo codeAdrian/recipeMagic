@@ -1,0 +1,39 @@
+/*------------------------------------------------------------*\
+            VERTICAL & HORIZONTAL SPACING CALCULATION
+\*------------------------------------------------------------*/
+
+:root {
+    --rhythmUnit: calc(var(--typography__lineHeight) * 1rem);
+
+    --spacing__vertical--n8: calc(var(--rhythmUnit) / 9);
+    --spacing__vertical--n7: calc(var(--rhythmUnit) / 8);
+    --spacing__vertical--n6: calc(var(--rhythmUnit) / 7);
+    --spacing__vertical--n5: calc(var(--rhythmUnit) / 6);
+    --spacing__vertical--n4: calc(var(--rhythmUnit) / 5);
+    --spacing__vertical--n3: calc(var(--rhythmUnit) / 4);
+    --spacing__vertical--n2: calc(var(--rhythmUnit) / 3);
+    --spacing__vertical--n1: calc(var(--rhythmUnit) / 2);
+    --spacing__vertical--1: var(--rhythmUnit);
+    --spacing__vertical--2: calc(2 * var(--rhythmUnit));
+    --spacing__vertical--3: calc(3 * var(--rhythmUnit));
+    --spacing__vertical--4: calc(4 * var(--rhythmUnit));
+    --spacing__vertical--5: calc(5 * var(--rhythmUnit));
+    --spacing__vertical--6: calc(6 * var(--rhythmUnit));
+    --spacing__vertical--7: calc(7 * var(--rhythmUnit));
+    --spacing__vertical--8: calc(8 * var(--rhythmUnit));
+    --spacing__vertical--9: calc(9 * var(--rhythmUnit));
+    --spacing__vertical--10: calc(10 * var(--rhythmUnit));
+
+    --spacing__horizontal--n6: var(--spacing__vertical--n6);
+    --spacing__horizontal--n5: var(--spacing__vertical--n5);
+    --spacing__horizontal--n4: var(--spacing__vertical--n4);
+    --spacing__horizontal--n3: var(--spacing__vertical--n3);
+    --spacing__horizontal--n2: var(--spacing__vertical--n2);
+    --spacing__horizontal--n1: var(--spacing__vertical--n1);
+    --spacing__horizontal--1: var(--spacing__vertical--1);
+    --spacing__horizontal--2: var(--spacing__vertical--2);
+    --spacing__horizontal--3: var(--spacing__vertical--3);
+    --spacing__horizontal--4: var(--spacing__vertical--4);
+    --spacing__horizontal--5: var(--spacing__vertical--5);
+    --spacing__horizontal--6: var(--spacing__vertical--6);
+}

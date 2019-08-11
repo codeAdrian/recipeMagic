@@ -1,0 +1,38 @@
+/*------------------------------------------------------------*\
+                    TYPOGRAPHY SCALE CALCULATION
+\*------------------------------------------------------------*/
+
+:root {
+  --typography__fontSize: calc((var(--typography__fontSize--px) / 16));
+
+  --typography__scale--1: var(--typography__scale);
+  --typography__scale--2: calc(
+    var(--typography__scale--1) * var(--typography__scale)
+  );
+  --typography__scale--3: calc(
+    var(--typography__scale--2) * var(--typography__scale)
+  );
+  --typography__scale--4: calc(
+    var(--typography__scale--3) * var(--typography__scale)
+  );
+  --typography__scale--5: calc(
+    var(--typography__scale--4) * var(--typography__scale)
+  );
+  --typography__scale--6: calc(
+    var(--typography__scale--5) * var(--typography__scale)
+  );
+  --typography__scale--7: calc(
+    var(--typography__scale--6) * var(--typography__scale)
+  );
+
+  --typography__smallest: calc((1 / var(--typography__scale--3)) * 1rem);
+  --typography__smaller: calc((1 / var(--typography__scale--2)) * 1rem);
+  --typography__small: calc((1 / var(--typography__scale--1)) * 1rem);
+  --typography__base: 1rem;
+  --typography__medium: calc(var(--typography__scale--1) * 1rem);
+  --typography__larger: calc(var(--typography__scale--2) * 1rem);
+  --typography__large: calc(var(--typography__scale--3) * 1rem);
+  --typography__xlarge: calc(var(--typography__scale--4) * 1rem);
+  --typography__largest: calc(var(--typography__scale--5) * 1rem);
+  --typography__xlargest: calc(var(--typography__scale--6) * 1rem);
+}

@@ -21,7 +21,7 @@ export const RecipeList: React.FC<Props> = ({ getRecipeList, searchQuery }) => {
   if ((!hits || hits.length === 0) && isLoading) return <div>Loading</div>;
 
   return (
-    <ul>
+    <ul className="recipeList">
       {hits.map(({ recipe }: any) => (
         <RecipeCard key={recipe.uri} {...recipe} />
       ))}

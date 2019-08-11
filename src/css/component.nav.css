@@ -1,0 +1,12 @@
+.nav__list {
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav__link {
+    padding: var(--spacing__vertical--1) var(--spacing__horizontal--1);
+    color: var(--color__gray--light);
+    font-weight: var(--typography__weight--semiBold);
+}

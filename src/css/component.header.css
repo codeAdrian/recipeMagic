@@ -1,0 +1,18 @@
+.header {
+    background-color: rgba(255, 255, 255, 0.5);
+    z-index: 2;
+    position: absolute;
+    padding: 0 var(--spacing__horizontal--1);
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.header__wrapper {
+    display: flex;
+    justify-content: space-between;
+    max-width: var(--container__width--large);
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+}

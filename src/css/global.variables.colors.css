@@ -1,0 +1,28 @@
+:root {
+    --color__primary: #ff4e50;
+    --color__primary--darken: #e54648;
+
+    --color__secondary: #f39c12;
+    --color__secondary--darken: #da8c10;
+
+    --color__tertiary: #f9d423;
+    --color__tertiary--darken: #e0be1f;
+
+    --color__gradient--cta: linear-gradient(
+        90deg,
+        var(--color__primary) 0%,
+        var(--color__secondary) 50%,
+        var(--color__tertiary) 100%
+    );
+
+    --color__gradient--hover: linear-gradient(
+        -90deg,
+        var(--color__primary) 0%,
+        var(--color__secondary) 50%,
+        var(--color__tertiary) 100%
+    );
+
+    --color__gray--darker: #253536;
+    --color__gray--light: #898989;
+    --color__gray--lightest: #fff;
+}

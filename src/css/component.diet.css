@@ -1,0 +1,42 @@
+.dietGraph__item {
+    display: flex;
+    align-items: center;
+}
+
+.dietGraph__item--0 {
+    color: var(--color__primary);
+}
+
+.dietGraph__item--1 {
+    color: var(--color__secondary);
+}
+
+.dietGraph__item--2 {
+    color: var(--color__tertiary);
+}
+
+.dietGraph__graph {
+    min-height: var(--spacing__vertical--1);
+    min-width: var(--spacing__horizontal--1);
+    background-color: currentColor;
+    margin-right: var(--spacing__horizontal--1);
+}
+
+.dietGraph__graph--0 {
+    border-radius: var(--spacing__horizontal--1) var(--spacing__horizontal--1) 0
+        0;
+}
+
+.dietGraph__graph--2 {
+    border-radius: 0 0 var(--spacing__horizontal--1)
+        var(--spacing__horizontal--1);
+}
+
+.dietGraph__label {
+    font-weight: var(--typography__weight--semiBold);
+    width: 80px;
+}
+
+.dietGraph__info {
+    color: var(--color__gray--darker);
+}

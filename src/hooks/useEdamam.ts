@@ -37,7 +37,6 @@ export const useEdamam = () => {
   }, []);
 
   const buildQuery = (filters: any) => {
-    console.log("QURT", filters);
     const { searchQuery, ingredients, healthLabels, dietLabels } = filters;
     let buildQuery = searchQuery;
     if (ingredients.length > 0) {

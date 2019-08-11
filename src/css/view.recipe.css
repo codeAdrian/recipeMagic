@@ -1,0 +1,13 @@
+.recipe__header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.recipe__header--image {
+    padding-right: var(--spacing__horizontal--2);
+}
+
+.recipe__title--main {
+    margin-bottom: 0;
+}

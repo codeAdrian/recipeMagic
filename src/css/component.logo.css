@@ -1,0 +1,18 @@
+.logo {
+    margin: 0;
+}
+
+.logo__link {
+    font-family: var(--typography__fontFamily--tertiary);
+    font-size: var(--typography__larger);
+    line-height: var(--spacing__vertical--2);
+
+    &,
+    &:visited {
+        font-weight: var(--typography__weight--normal);
+        color: var(--color__secondary);
+        background: var(--color__gradient--cta);
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}

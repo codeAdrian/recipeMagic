@@ -1,0 +1,15 @@
+:root {
+    --typography__lineHeight: 1.555;
+    --typography__fontSize--px: 18;
+    --typography__scale: 1.333;
+
+    --typography__spacing--1px: calc((1 / 16) * 1rem);
+
+    --typography__fontFamily: 'Montserrat', Arial, sans-serif;
+    --typography__fontFamily--secondary: 'Hind', Arial, sans-serif;
+    --typography__fontFamily--tertiary: 'Galada', cursive;
+
+    --typography__weight--normal: 400;
+    --typography__weight--semiBold: 600;
+    --typography__weight--bold: 700;
+}

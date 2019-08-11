@@ -1,0 +1,78 @@
+html {
+    line-height: var(--typography__lineHeight);
+    font-size: calc(var(--typography__fontSize) * 1rem);
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: var(--typography__weight--normal);
+    font-family: var(--typography__fontFamily);
+    color: var(--color__gray--1);
+}
+
+.heading {
+    font-family: var(--typography__fontFamily--secondary);
+    font-size: var(--heading__fontSize);
+    line-height: var(--heading__lineHeight);
+    margin-bottom: var(--spacing__vertical--1);
+    margin-top: 0;
+}
+
+.paragraph {
+    margin-top: 0;
+    margin-bottom: var(--spacing__vertical--1);
+}
+
+.small {
+    --heading__fontSize: var(--typography__small);
+    --heading__lineHeight: var(--spacing__vertical--1);
+}
+
+.small--default {
+    color: var(--color__cta);
+}
+
+.heading--level1 {
+    --heading__fontSize: var(--typography__xlarge);
+    --heading__lineHeight: calc(
+        var(--spacing__vertical--2) + var(--spacing__vertical--n1)
+    );
+}
+
+.heading--level2 {
+    --heading__fontSize: var(--typography__large);
+    --heading__lineHeight: var(--spacing__vertical--2);
+}
+
+.heading--level3 {
+    --heading__fontSize: var(--typography__larger);
+    --heading__lineHeight: var(--spacing__vertical--2);
+}
+
+.heading--level4 {
+    --heading__fontSize: var(--typography__medium);
+    --heading__lineHeight: calc(
+        var(--spacing__vertical--1) + var(--spacing__vertical--n2)
+    );
+}
+
+.heading--level5 {
+    font-size: var(--typography__base);
+    --heading__lineHeight: var(--spacing__vertical--1);
+}
+
+.link--default {
+    color: var(--color__cta);
+}
+
+.link--reset {
+    text-decoration: none;
+    color: inherit;
+
+    &:hover,
+    &:active,
+    &:visited {
+        color: inherit;
+    }
+}

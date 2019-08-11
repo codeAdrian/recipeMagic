@@ -1,0 +1,8 @@
+a {
+    display: inline-block;
+
+    &,
+    &:visited {
+        text-decoration: none;
+    }
+}

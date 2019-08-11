@@ -6,9 +6,6 @@ export const RecipePage: React.FC<any> = ({ match }) => {
   const [{ getRecipeDetails }] = useEdamam();
 
   return (
-    <div>
-      <RecipeDetails getRecipeDetails={getRecipeDetails} id={match.params.id} />
-      Recipe page
-    </div>
+    <RecipeDetails getRecipeDetails={getRecipeDetails} id={match.params.id} />
   );
 };

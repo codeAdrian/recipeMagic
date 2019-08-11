@@ -1,0 +1,9 @@
+.gradient--text {
+    background: var(--color__gradient--cta);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.color--gray--light {
+    color: var(--color__gray--light);
+}
