@@ -18,6 +18,14 @@
 @import './component.nav';
 @import './component.footer';
 @import './component.diet';
+@import './component.containers';
+@import './component.input';
+@import './component.dropdown';
+@import './component.table';
+@import './component.loading';
+@import './component.list';
+@import './component.toggleable';
+@import './component.recipeCategories';
 
 @import './view.home';
 @import './view.recipes';

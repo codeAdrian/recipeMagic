@@ -2,11 +2,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-height: calc(100vh - var(--spacing__vertical--3));
-    margin-bottom: var(--spacing__vertical--2);
+    max-height: calc(100vh - var(--spacing__vertical--4));
+    margin-bottom: var(--spacing__vertical--6);
 }
 
 .home__hero--text {
+    transform: translateX(-200px);
     justify-self: flex-end;
     padding-right: var(--spacing__horizontal--6);
     max-width: 680px;
@@ -16,4 +17,37 @@
 
 .home__hero--image {
     display: block;
+}
+
+.home__about {
+    text-align: center;
+    padding-bottom: var(--spacing__vertical--4);
+}
+
+.home__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.home__card {
+    flex-basis: 31%;
+    padding: var(--spacing__vertical--2) var(--spacing__horizontal--1);
+    box-shadow: 0 0 0.3em 0.15em var(--color__gray--lighter);
+}
+
+.home__image {
+    padding-bottom: var(--spacing__vertical--n1);
+}
+
+.home__title {
+    font-weight: 600;
+    margin-bottom: var(--spacing__vertical--n1);
+}
+
+.home__subtitle {
+    max-width: 380px;
+    margin-bottom: var(--spacing__vertical--2);
+    margin-left: auto;
+    margin-right: auto;
 }

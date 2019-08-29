@@ -76,3 +76,10 @@ body {
         color: inherit;
     }
 }
+
+small {
+    font-size: var(--typography__small);
+    padding-left: calc(
+        var(--spacing__horizontal--n4) + var(--spacing__horizontal--n1)
+    );
+}

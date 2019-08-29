@@ -1,9 +1,20 @@
-import * as React from 'react';
+import React, { useLayoutEffect } from 'react';
+import anime from 'animejs';
 
 export const About = () => {
-  return (
-    <React.Fragment>
-      About page
-    </React.Fragment>
-  );
+  const fadeIn = () => {
+    const fadeIn = anime.timeline();
+    fadeIn.add({
+      targets: '.main',
+      opacity: [0, 1],
+      duration: 300,
+      easing: 'easeInQuad'
+    });
+  };
+
+  useLayoutEffect(() => {
+    fadeIn();
+  }, []);
+
+  return <React.Fragment>About page</React.Fragment>;
 };

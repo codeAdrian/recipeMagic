@@ -10,9 +10,6 @@
     &,
     &:visited {
         font-weight: var(--typography__weight--normal);
-        color: var(--color__secondary);
-        background: var(--color__gradient--cta);
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
+        color: var(--color__gray--lightest);
     }
 }

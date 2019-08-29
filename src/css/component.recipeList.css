@@ -38,7 +38,7 @@
 
 .recipeCard__title {
     margin: 0;
-    padding-bottom: var(--spacing__vertical--1);
+    padding-bottom: var(--spacing__vertical--n1);
 }
 
 .recipeCard__wrapper {

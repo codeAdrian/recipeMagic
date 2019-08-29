@@ -1,18 +1,22 @@
-import React, { useEffect } from 'react';
+import React, { useLayoutEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { DietGraph } from "./DietGraph";
+import { DietGraph } from './DietGraph';
 import { isObjectEmpty } from 'util/isObjectEmpty';
+import { Loading } from 'components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 export const RecipeDetails: React.FC<any> = ({ getRecipeDetails, id }) => {
   const recipe = useSelector((state: any) => state.recipe);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     getRecipeDetails(
       `http://www.edamam.com/ontologies/edamam.owl#recipe_${id}`
     );
   }, []);
 
-  if (isObjectEmpty(recipe) || recipe.isLoading) return <div>Loading</div>;
+  if (isObjectEmpty(recipe) || recipe.isLoading) return <Loading />;
 
   const {
     calories,
@@ -43,59 +47,84 @@ export const RecipeDetails: React.FC<any> = ({ getRecipeDetails, id }) => {
   digest.length = 3;
 
   return (
-    <section>
+    <section className="container container--withPadding">
       <header className="recipe__header">
         <div className="recipe__header--image">
           <img src={image} alt={label} />
         </div>
-        <div>
-          <h2 className="heading heading--level1 recipe__title--main">{label}</h2>
-          By{" "}
-          <a href={url}>
-            <strong className="gradient--text">
-              {source}
-            </strong>
-          </a>
+        <div className="recipe__header--content">
+          <Link className="button button--secondary" to="/recipes">
+            <FontAwesomeIcon icon={faArrowLeft} /> Return to recipes
+          </Link>
+          <h2 className="heading heading--level1 recipe__title--main">
+            {label}
+          </h2>
+          <p className="paragraph">
+            By{' '}
+            <a href={url}>
+              <strong className="gradient--text">{source}</strong>
+            </a>
+          </p>
+
           <div>
-            {Math.ceil(calories)} calories | {servings} servings | {totalTime}{' '}
+            <strong className="gradient--text">{Math.ceil(calories)}</strong>{' '}
+            calories | <strong className="gradient--text">{servings}</strong>{' '}
+            servings | <strong className="gradient--text">{totalTime}</strong>{' '}
             minutes
-        </div>
+          </div>
         </div>
       </header>
-      <article>
-        <h3>Ingredients</h3>
-        <ul>
-          {ingredientLines.map((item: string, index: number) => (
-            <li key={`ingredient-line-${index}`}>{item}</li>
-          ))}
-        </ul>
-      </article>
+      <div className="recipe__wrapper">
+        <article>
+          <h3 className="heading heading--level3">Ingredients</h3>
+          <ul className="list--styled">
+            {ingredientLines.map((item: string, index: number) => (
+              <li key={`ingredient-line-${index}`}>{item}</li>
+            ))}
+          </ul>
+        </article>
+        <article>
+          <h3 className="heading heading--level3">Preparation</h3>
+          <p className="paragraph">
+            This recipe is provided by{' '}
+            <a href={url}>
+              <strong className="gradient--text">{source}</strong>
+            </a>
+            . You can view the detailed preparation instructions by clicking the
+            following link.
+          </p>
+          <a href={url} className="button button--regular button--cta">
+            Preparation Instructions
+          </a>
+        </article>
+      </div>
 
-      <article>
-        <h3>Nutrition</h3>
-        <table>
-          <tbody>
-            {
-              Object.keys(totalDaily).map((key: string, index) => <tr key={`nutrient-${index}`}>
-                <td>{totalDaily[key].label} </td>
-                <td>{`${totalDaily[key].quantity.toFixed(2)}${totalDaily[key].unit}`}</td>
-                <td>{`${totalNutrients[key].quantity.toFixed(2)}${totalNutrients[key].unit}`}</td>
-              </tr>
-              )
-            }
-          </tbody>
-        </table>
-      </article>
+      <div className="recipe__wrapper">
+        <article>
+          <h3 className="heading heading--level3">Nutrition</h3>
+          <table>
+            <tbody>
+              {Object.keys(totalDaily).map((key: string, index) => (
+                <tr key={`nutrient-${index}`}>
+                  <td>{totalDaily[key].label} </td>
+                  <td>{`${totalDaily[key].quantity.toFixed(2)}${
+                    totalDaily[key].unit
+                  }`}</td>
+                  <td>{`${totalNutrients[key].quantity.toFixed(2)}${
+                    totalNutrients[key].unit
+                  }`}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </article>
 
-      <article>
-        <h3>Diet</h3>
-        <ul>
-          {labels.map((item: string, index: number) => (
-            <li key={`diet-label-${index}`}>{item}</li>
-          ))}
-        </ul>
-        <DietGraph digest={digest} />
-      </article>
+        <article>
+          <h3 className="heading heading--level3">Diet</h3>
+          <p className="paragraph">{labels.join(', ')}</p>
+          <DietGraph digest={digest} />
+        </article>
+      </div>
     </section>
   );
 };

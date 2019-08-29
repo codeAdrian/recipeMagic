@@ -1,7 +1,11 @@
-export * from './Layout';
+export { default as Layout } from './Layout';
 export * from './Header';
 export * from './Footer';
 export * from './Navigation';
 export * from './Logo';
 export { default as ScrollToTop } from './ScrollToTop';
 export * from './RecipeCard';
+export * from './Tooltip';
+export * from './Loading';
+export * from './Toggleable';
+export * from './RecipeCategories';

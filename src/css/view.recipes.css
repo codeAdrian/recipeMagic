@@ -1,0 +1,36 @@
+.filters {
+    display: flex;
+    justify-content: space-between;
+}
+
+.filters__group {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.recipeList__start {
+    text-align: center;
+    max-width: 860px;
+    margin: 0 auto;
+    min-height: calc(
+        100vh - var(--spacing__vertical--4) - var(--spacing__vertical--6)
+    );
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.recipeList__images {
+    padding-bottom: var(--spacing__vertical--1);
+
+    img {
+        &:not(:last-child) {
+            margin-right: var(--spacing__horizontal--1);
+        }
+    }
+}
+
+.recipeList__searchWrapper {
+    display: inline-block;
+}

@@ -2,6 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    padding-bottom: var(--spacing__vertical--2);
 }
 
 .recipe__header--image {
@@ -10,4 +11,27 @@
 
 .recipe__title--main {
     margin-bottom: 0;
+}
+
+.recipe__header--content {
+    max-width: 768px;
+}
+
+.recipe__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    article {
+        padding-bottom: var(--spacing__vertical--1);
+        width: 50%;
+
+        &:first-child {
+            padding-right: var(--spacing__horizontal--3);
+        }
+
+        &:last-child {
+            width: 35%;
+        }
+    }
 }

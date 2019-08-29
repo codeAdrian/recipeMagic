@@ -1,0 +1,14 @@
+table {
+    border-collapse: collapse;
+
+    td {
+        padding: var(--spacing__vertical--n1) var(--spacing__horizontal--1);
+    }
+
+    tr {
+        position: relative;
+        background: var(--color__gradient--cta) no-repeat;
+        background-size: 100% 1px;
+        background-position-y: 100%;
+    }
+}

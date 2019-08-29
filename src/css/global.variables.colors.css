@@ -23,6 +23,8 @@
     );
 
     --color__gray--darker: #253536;
+    --color__gray--dark: #686868;
     --color__gray--light: #898989;
+    --color__gray--lighter: #f4f4f4;
     --color__gray--lightest: #fff;
 }

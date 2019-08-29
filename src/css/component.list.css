@@ -1,0 +1,25 @@
+.list--styled {
+    margin: 0;
+    list-style: none;
+    padding-left: var(--spacing__horizontal--1);
+    li {
+        padding-bottom: var(--spacing__vertical--n2);
+
+        &:before {
+            content: '\2022'; /* Add content: \2022 is the CSS Code/unicode for a bullet */
+            color: var(--color__secondary); /* Change the color */
+            font-weight: bold; /* If you want it to be bold */
+            font-size: 1.5em;
+            line-height: 1;
+            display: inline-block; /* Needed to add space between the bullet and the text */
+            width: calc(
+                var(--spacing__horizontal--n1) + var(--spacing__horizontal--n2)
+            );
+            margin-left: calc(
+                -1 * (var(--spacing__horizontal--n1)+var(
+                                --spacing__horizontal--n2
+                            ))
+            );
+        }
+    }
+}

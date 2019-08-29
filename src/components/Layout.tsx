@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React from 'react';
+import { withRouter } from 'react-router';
 import { Header, Footer } from 'components';
-
 interface Props {
   children: React.ReactNode;
 }
 
-export const Layout: React.FC<Props> = ({ children }) => {
+const Layout: any = ({ children, location }: any) => {
   return (
     <React.Fragment>
       <Header />
@@ -14,3 +14,5 @@ export const Layout: React.FC<Props> = ({ children }) => {
     </React.Fragment>
   );
 };
+
+export default withRouter(Layout);

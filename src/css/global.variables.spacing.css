@@ -1,6 +1,7 @@
 :root {
     --spacing__default--horizontal: var(--spacing__horizontal--1);
     --container__width--large: 1440px;
+    --container__width--medium: 1280px;
 
     --border__width--thin: calc((1 / 16) * 1rem);
     --border__width--medium: calc((2 / 16) * 1rem);

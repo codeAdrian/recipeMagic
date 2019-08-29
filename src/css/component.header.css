@@ -11,7 +11,6 @@
 .header__wrapper {
     display: flex;
     justify-content: space-between;
-    max-width: var(--container__width--large);
     margin-left: auto;
     margin-right: auto;
     align-items: center;

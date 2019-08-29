@@ -1,0 +1,15 @@
+.recipeCategories {
+    text-align: center;
+}
+
+.recipeCategories__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.recipeCategories__image {
+    padding-bottom: var(--spacing__vertical--1);
+}

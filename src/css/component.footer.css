@@ -1,4 +1,37 @@
 .footer {
     background-image: url('../assets/footer-min.jpg');
     background-size: cover;
+    color: var(--color__gray--lightest);
+    padding: var(--spacing__vertical--4) var(--spacing__horizontal--1);
+}
+
+.footer__wrapper {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer__col--info {
+    max-width: 320px;
+}
+
+.footer__logo {
+    line-height: 1;
+}
+
+.footer__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+        padding-bottom: var(--spacing__vertical--n2);
+    }
+}
+
+.footer__sectionTitle {
+    display: block;
+    padding-bottom: var(--spacing__vertical--n1);
 }

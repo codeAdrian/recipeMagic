@@ -1,0 +1,169 @@
+input,
+label,
+select,
+button,
+textarea {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    display: inline-block;
+    vertical-align: middle;
+    white-space: normal;
+    background: none;
+    font-size: inherit;
+    line-height: inherit;
+    font-family: inherit;
+}
+
+/* Remove the stupid outer glow in Webkit */
+input:focus {
+    outline: 0;
+}
+
+/* Box Sizing Reset
+-----------------------------------------------*/
+
+/* All of our custom controls should be what we expect them to be */
+input,
+textarea {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+/* These elements are usually rendered a certain way by the browser */
+button,
+input[type='reset'],
+input[type='button'],
+input[type='submit'],
+input[type='checkbox'],
+input[type='radio'],
+select {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/* Button Controls
+-----------------------------------------------*/
+
+input[type='checkbox'],
+input[type='radio'] {
+    width: 13px;
+    height: 13px;
+}
+
+/* Search Input
+-----------------------------------------------*/
+
+/* Make webkit render the search input like a normal text field */
+input[type='search'] {
+    -webkit-appearance: textfield;
+    -webkit-box-sizing: content-box;
+}
+
+/* Turn off the recent search for webkit. It adds about 15px padding on the left */
+::-webkit-search-decoration {
+    display: none;
+}
+
+.input--field {
+    padding: var(--spacing__vertical--n1) var(--spacing__horizontal--1);
+    background-color: var(--color__gray--lighter);
+    border-radius: var(--spacing__vertical--1);
+}
+
+.inputWrapper--withButton {
+    position: relative;
+    display: inline-block;
+
+    .input {
+        padding-right: var(--spacing__horizontal--3);
+    }
+
+    .button {
+        position: absolute;
+        z-index: 1;
+        right: 0;
+    }
+}
+
+.inputWrapper--fullWidth {
+    display: block;
+}
+
+.icon::before {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+}
+
+.input--checkbox {
+    display: none;
+
+    & + label {
+        user-select: none;
+        padding-right: var(--spacing__horizontal--n2);
+        cursor: pointer;
+
+        .svg-inline--fa {
+            width: 1em;
+            height: 1em;
+            padding-right: var(--spacing__horizontal--n3);
+            color: var(--color__gray--light);
+        }
+
+        .fa-check-square {
+            display: none;
+            color: var(--color__secondary);
+        }
+    }
+
+    &:checked {
+        & + label {
+            .svg-inline--fa {
+                display: none;
+            }
+
+            .fa-check-square {
+                display: initial;
+            }
+        }
+    }
+}
+
+.input--radio {
+    display: none;
+
+    & + label {
+        user-select: none;
+        cursor: pointer;
+        padding-right: var(--spacing__horizontal--n2);
+
+        .svg-inline--fa {
+            width: 1em;
+            height: 1em;
+            padding-right: var(--spacing__horizontal--n3);
+            color: var(--color__gray--light);
+        }
+
+        .fa-dot-circle {
+            display: none;
+            color: var(--color__secondary);
+        }
+    }
+
+    &:checked {
+        & + label {
+            .svg-inline--fa {
+                display: none;
+            }
+
+            .fa-dot-circle {
+                display: initial;
+            }
+        }
+    }
+}

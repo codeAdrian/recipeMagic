@@ -1,46 +1,80 @@
 import React, { useState } from 'react';
-import { dietLabels } from "../constants";
+import { dietLabels } from '../constants';
 import { FILTERS_TYPES } from 'modules/Filters/redux/types';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircle, faDotCircle } from '@fortawesome/free-solid-svg-icons';
+import { Toggleable } from 'components';
 
 export const DietFilters = () => {
-    const [filter, setFilters] = useState<string>();
-    const dispatch = useDispatch();
+  const selectedLabels = useSelector((state: any) => state.filters.dietLabels);
+  const [filter, setFilters] = useState<string>(selectedLabels || '');
+  const dispatch = useDispatch();
 
-    const handleInputChange = (event: any) => {
-        const { value }: { value: string } = event.currentTarget || event.srcElement;
-        setFilters(value || "");
-    }
+  const handleInputChange = (event: any) => {
+    const { value }: { value: string } =
+      event.currentTarget || event.srcElement;
+    setFilters(value || '');
+  };
 
-    const handleSubmit = (event: any) => {
-        event.preventDefault();
-        dispatch({
-            type: FILTERS_TYPES.FILTERS_ADD,
-            payload: { key: "dietLabels", data: filter || [] }
-        })
-    }
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+    dispatch({
+      type: FILTERS_TYPES.FILTERS_ADD,
+      payload: { key: 'dietLabels', data: filter || '' }
+    });
+  };
 
-    const handleReset = (event: any) => {
-        event.preventDefault();
-        setFilters("");
-        dispatch({
-            type: FILTERS_TYPES.FILTERS_ADD,
-            payload: { key: "dietLabels", data: "" }
-        })
-    }
+  const handleReset = (event: any) => {
+    event.preventDefault();
+    setFilters('');
+    dispatch({
+      type: FILTERS_TYPES.FILTERS_ADD,
+      payload: { key: 'dietLabels', data: '' }
+    });
+  };
 
-    return (
-        <form onSubmit={handleSubmit} onReset={handleReset}>
-            {dietLabels.map(({ label, value, description }) =>
-                <div key={value}>
-                    <input name="filter-diet-label" onChange={handleInputChange} id={value} type="radio" value={value}></input>
-                    <label htmlFor={value}>{label}</label>
-                    <span>{description}</span>
-                </div>
-            )}
-            <button type="submit">Apply filters</button>
+  return (
+    <Toggleable title="Diet labels">
+      <form onSubmit={handleSubmit} onReset={handleReset}>
+        <div className="controls">
+          {dietLabels.map(({ label, value, description }) => (
+            <div key={value}>
+              <input
+                className="input input--radio"
+                name="filter-diet-label"
+                onChange={handleInputChange}
+                id={value}
+                type="radio"
+                value={value}
+                checked={filter.indexOf(value) > -1}
+                defaultChecked={selectedLabels.indexOf(value) > -1}
+              />
+              <label htmlFor={value}>
+                <FontAwesomeIcon icon={faCircle} />
+                <FontAwesomeIcon icon={faDotCircle} />
+                {label}
+                <br />
+                <small className="color--gray--light">{description}</small>
+              </label>
+            </div>
+          ))}
+        </div>
 
-            <button type="reset">Reset</button>
-        </form>
-    )
-}
+        <button
+          className="button button--control button--regular button--cta"
+          type="submit"
+        >
+          Apply Labels
+        </button>
+
+        <button
+          className="button button--control button--regular button--primary"
+          type="reset"
+        >
+          Clear
+        </button>
+      </form>
+    </Toggleable>
+  );
+};

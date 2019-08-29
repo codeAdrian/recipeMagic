@@ -4,7 +4,7 @@ import { Routing } from 'modules';
 import { Provider as ReduxProvider } from 'react-redux';
 import { store } from 'store';
 import * as serviceWorker from './serviceWorker';
-import "css/index.css";
+import 'css/index.css';
 
 ReactDOM.render(
   <ReduxProvider store={store}>

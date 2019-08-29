@@ -1,0 +1,51 @@
+.toggleable {
+    position: relative;
+    display: inline-block;
+}
+
+.toggleable__content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--color__gray--lightest);
+    display: none;
+    min-width: 400px;
+    z-index: 2;
+    padding: var(--spacing__vertical--1) var(--spacing__horizontal--1);
+    box-shadow: 0 0 4px 1px var(--color__gray--lighter);
+
+    .controls {
+        margin-bottom: var(--spacing__vertical--n1);
+
+        & > div {
+            margin-bottom: var(--spacing__vertical--n2);
+        }
+    }
+
+    .button--control {
+        width: 100%;
+
+        &:not(:last-child) {
+            margin-bottom: var(--spacing__vertical--n1);
+        }
+    }
+
+    &:after {
+        content: '';
+        z-index: 10;
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 8px solid var(--color__gray--lightest);
+        position: absolute;
+        top: -8px;
+        margin-top: 0px;
+        left: 20px;
+    }
+}
+
+.toggleable__content--active {
+    display: block;
+}

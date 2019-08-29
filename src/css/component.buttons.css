@@ -5,6 +5,8 @@ button {
     width: auto;
     overflow: visible;
     display: inline-block;
+    cursor: pointer;
+    outline: 0;
 
     background: transparent;
 
@@ -29,13 +31,22 @@ button {
     }
 }
 
-.button--cta {
-    text-align: center;
+.button--regular {
+    padding: var(--spacing__vertical--n1) var(--spacing__vertical--2);
     letter-spacing: var(--typography__spacing--1px);
     font-weight: var(--typography__weight--semiBold);
-    padding: var(--spacing__vertical--n1) var(--spacing__vertical--2);
-    color: var(--color__gray--lightest);
     border-radius: var(--spacing__vertical--2);
+}
+
+.button--small {
+    padding: 0 var(--spacing__horizontal--n2);
+    letter-spacing: var(--typography__spacing--1px);
+    font-weight: var(--typography__weight--semiBold);
+}
+
+.button--cta {
+    text-align: center;
+    color: var(--color__gray--lightest);
     position: relative;
     overflow: hidden;
 
@@ -70,4 +81,47 @@ button {
             opacity: 1;
         }
     }
+}
+
+.button--primary {
+    transition: background-color 0.5s ease-in-out;
+    background-color: var(--color__gray--light);
+    text-align: center;
+    color: var(--color__gray--lightest);
+
+    &:hover {
+        background-color: var(--color__gray--dark);
+    }
+}
+
+.button--icon {
+    width: var(--spacing__horizontal--2);
+    padding-left: var(--spacing__horizontal--n1);
+    padding-right: var(--spacing__horizontal--n1);
+}
+
+.button--withIcon {
+    display: inline-flex;
+    align-items: center;
+
+    .svg-inline--fa {
+        margin-right: var(--spacing__horizontal--n3);
+        width: var(--spacing__horizontal--n2);
+    }
+}
+
+.button--secondary {
+    padding: var(--spacing__vertical--n1) var(--spacing__vertical--n1);
+    background-color: var(--color__gray--lighter);
+    margin-right: var(--spacing__horizontal--n1);
+    font-weight: var(--typography__weight--semiBold);
+}
+
+.button__label {
+    padding-right: var(--spacing__horizontal--n1);
+}
+
+.button--inline {
+    margin-top: var(--spacing__vertical--n1);
+    margin-right: var(--spacing__horizontal--n1);
 }

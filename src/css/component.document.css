@@ -14,7 +14,8 @@ body {
 
 main {
     min-height: 100vh;
-    padding-top: var(--spacing__vertical--3);
+    padding-top: var(--spacing__vertical--4);
+    opacity: 0;
 }
 
 html {
