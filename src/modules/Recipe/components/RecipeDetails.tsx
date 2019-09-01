@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { DietGraph } from './DietGraph';
 import { isObjectEmpty } from 'util/isObjectEmpty';
-import { Loading, LazyImage } from 'components';
+import { LazyImage, Accordion } from 'components';
+import { Skeleton } from './Skeleton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
@@ -16,7 +17,7 @@ export const RecipeDetails: React.FC<any> = ({ getRecipeDetails, id }) => {
     );
   }, []);
 
-  if (isObjectEmpty(recipe) || recipe.isLoading) return <Loading />;
+  if (isObjectEmpty(recipe) || recipe.isLoading) return <Skeleton />;
 
   const {
     calories,
@@ -105,21 +106,23 @@ export const RecipeDetails: React.FC<any> = ({ getRecipeDetails, id }) => {
       <div className="recipe__wrapper">
         <article>
           <h3 className="heading heading--level3">Nutrition</h3>
-          <table>
-            <tbody>
-              {Object.keys(totalDaily).map((key: string, index) => (
-                <tr key={`nutrient-${index}`}>
-                  <td>{totalDaily[key].label} </td>
-                  <td>{`${totalDaily[key].quantity.toFixed(2)}${
-                    totalDaily[key].unit
-                  }`}</td>
-                  <td>{`${totalNutrients[key].quantity.toFixed(2)}${
-                    totalNutrients[key].unit
-                  }`}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <Accordion>
+            <table>
+              <tbody>
+                {Object.keys(totalDaily).map((key: string, index) => (
+                  <tr key={`nutrient-${index}`}>
+                    <td>{totalDaily[key].label} </td>
+                    <td>{`${totalDaily[key].quantity.toFixed(2)}${
+                      totalDaily[key].unit
+                    }`}</td>
+                    <td>{`${totalNutrients[key].quantity.toFixed(2)}${
+                      totalNutrients[key].unit
+                    }`}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </Accordion>
         </article>
 
         <article>

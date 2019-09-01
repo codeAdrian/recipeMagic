@@ -2,21 +2,26 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-height: calc(100vh - var(--spacing__vertical--4));
-    margin-bottom: var(--spacing__vertical--6);
+    max-height: 100vh;
+    margin-bottom: var(--spacing__vertical--4);
+    margin-top: calc(-1 * var(--spacing__vertical--4));
 }
 
 .home__hero--text {
     transform: translateX(-200px);
     justify-self: flex-end;
-    padding-right: var(--spacing__horizontal--6);
-    max-width: 680px;
+    padding-right: var(--spacing__horizontal--4);
+    max-width: 660px;
     margin-left: auto;
     margin-right: 0;
+    padding-left: var(--spacing__horizontal--2);
+    flex-basis: 50%;
 }
 
 .home__hero--image {
     display: block;
+    text-align: right;
+    flex-basis: 50%;
 }
 
 .home__about {

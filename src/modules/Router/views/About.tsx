@@ -7,7 +7,7 @@ export const About = () => {
     fadeIn.add({
       targets: '.main',
       opacity: [0, 1],
-      duration: 300,
+      duration: 500,
       easing: 'easeInQuad'
     });
   };

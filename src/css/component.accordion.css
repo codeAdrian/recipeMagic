@@ -1,0 +1,6 @@
+.accordion__content {
+    border: 1px solid var(--color__gray--lighter);
+    padding: var(--spacing__vertical--n1) var(--spacing__horizontal--n1);
+    max-height: var(--spacing__vertical--9);
+    overflow: auto;
+}

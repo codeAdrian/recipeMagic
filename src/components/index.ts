@@ -6,6 +6,6 @@ export * from './Logo';
 export { default as ScrollToTop } from './ScrollToTop';
 export * from './RecipeCard';
 export * from './Tooltip';
-export * from './Loading';
 export * from './Toggleable';
 export * from './LazyImage';
+export * from './Accordion';

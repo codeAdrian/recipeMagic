@@ -8,9 +8,21 @@
 }
 
 .recipeCard {
-    flex-basis: 25%;
-    margin: 0;
-    padding: var(--spacing__vertical--1) var(--spacing__horizontal--n1);
+    flex-basis: 23%;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: 2.66%;
+    padding: var(--spacing__vertical--1) 0;
+
+    &:nth-child(4n + 1) {
+        margin-left: 0;
+        padding-left: 0;
+    }
+
+    &:nth-child(4n + 4) {
+        margin-right: 0;
+        padding-right: 0;
+    }
 }
 
 .recipeCard__image--skeleton {

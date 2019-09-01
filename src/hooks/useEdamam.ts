@@ -2,7 +2,6 @@ import { useCallback, useMemo } from 'react';
 import { RECIPE_LIST_TYPES } from 'modules/RecipeList/redux/types';
 import { RECIPE_TYPES } from 'modules/Recipe/redux/types';
 import { useDispatch } from 'react-redux';
-import { Ingredients } from 'modules';
 import { toast } from 'react-toastify';
 
 const API = {

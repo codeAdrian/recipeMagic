@@ -21,7 +21,7 @@ const RecipeListPage = ({ history }: any) => {
     fadeIn.add({
       targets: '.main',
       opacity: [0, 1],
-      duration: 300,
+      duration: 500,
       easing: 'easeInQuad'
     });
   };
@@ -38,7 +38,6 @@ const RecipeListPage = ({ history }: any) => {
   }, []);
 
   const currentQuery = useSelector((state: any) => state.filters.searchQuery);
-  const recipes = useSelector((state: any) => state.recipes);
   const filters = useSelector((state: any) => state.filters);
 
   const queryFilters = filters;
@@ -51,17 +50,6 @@ const RecipeListPage = ({ history }: any) => {
       search: `?${queryString}`
     });
   }, [queryString]);
-
-  const { hits } = recipes;
-
-  const { searchQuery, ingredients, healthLabels, dietLabels } = filters;
-
-  const isInitialLoad =
-    hits.length === 0 &&
-    !searchQuery &&
-    !dietLabels &&
-    ingredients.length === 0 &&
-    healthLabels.length === 0;
 
   const [state, api] = useSearch(handleSearchSubmit);
 

@@ -18,13 +18,13 @@
     justify-content: space-between;
     flex-wrap: wrap;
 
+    .media__wrapper {
+        margin-bottom: var(--spacing__vertical--1);
+    }
+
     li {
         flex: 1 1 25%;
     }
-}
-
-.recipeCategories__image {
-    padding-bottom: var(--spacing__vertical--1);
 }
 
 .recipeCategories__title {

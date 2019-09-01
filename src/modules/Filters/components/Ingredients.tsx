@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FILTERS_TYPES } from 'modules/Filters/redux/types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faTimes, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { Toggleable } from 'components';
 
 export const Ingredients = () => {
@@ -43,7 +43,14 @@ export const Ingredients = () => {
     [ingredients, inputValue]
   );
   return (
-    <Toggleable title="Ingredients">
+    <Toggleable
+      title={
+        <>
+          {ingredients.length > 0 && <FontAwesomeIcon icon={faCheck} />}{' '}
+          Ingredients
+        </>
+      }
+    >
       <form
         className="inputWrapper--withButton inputWrapper--fullWidth"
         onSubmit={handleSubmit}

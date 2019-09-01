@@ -3,7 +3,11 @@ import { healthLabels } from '../constants';
 import { FILTERS_TYPES } from 'modules/Filters/redux/types';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSquare, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
+import {
+  faSquare,
+  faCheckSquare,
+  faCheck
+} from '@fortawesome/free-solid-svg-icons';
 import { Toggleable } from 'components';
 
 export const HealthFilters = () => {
@@ -42,7 +46,14 @@ export const HealthFilters = () => {
   };
 
   return (
-    <Toggleable title="Health labels">
+    <Toggleable
+      title={
+        <>
+          {selectedLabels.length > 0 && <FontAwesomeIcon icon={faCheck} />}{' '}
+          Health labels
+        </>
+      }
+    >
       <form onSubmit={handleSubmit} onReset={handleReset}>
         <div className="controls">
           {healthLabels.map(({ label, value, description }) => (

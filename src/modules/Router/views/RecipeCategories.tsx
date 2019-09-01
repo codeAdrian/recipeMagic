@@ -17,7 +17,7 @@ const RecipeCategories = ({ history }: any) => {
       .add({
         targets: '.main',
         opacity: [0, 1],
-        duration: 300,
+        duration: 500,
         easing: 'easeInQuad'
       })
       .add(
@@ -28,7 +28,7 @@ const RecipeCategories = ({ history }: any) => {
           duration: 500,
           easing: 'easeInQuad'
         },
-        '-=300'
+        '-=500'
       )
       .add(
         {

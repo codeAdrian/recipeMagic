@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from 'react';
-import { RecipeCard, Loading } from 'components';
+import { RecipeCard } from 'components';
 import { useSelector } from 'react-redux';
 import { Pagination } from './Pagination';
 import { Skeleton } from './Skeleton';
@@ -53,7 +53,17 @@ export const RecipeList: React.FC<Props> = ({ getRecipeList, searchQuery }) => {
               <RecipeCard key={recipe.uri} {...recipe} />
             ))}
       </ul>
-      <Pagination currentPage={filters.currentPage} {...recipes} />
+      {isLoading ? (
+        <div className="pagination">
+          {[...new Array(5)].map((_, index) => (
+            <div className="pagination__button" key={`skeleton-page-${index}`}>
+              &nbsp;
+            </div>
+          ))}
+        </div>
+      ) : (
+        <Pagination currentPage={filters.currentPage} {...recipes} />
+      )}
     </>
   );
 };
