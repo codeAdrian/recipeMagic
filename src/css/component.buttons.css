@@ -84,13 +84,13 @@ button {
 }
 
 .button--primary {
-    transition: background-color 0.5s ease-in-out;
-    background-color: var(--color__gray--light);
+    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+    background-color: var(--color__gray--lighter);
     text-align: center;
-    color: var(--color__gray--lightest);
 
     &:hover {
-        background-color: var(--color__gray--dark);
+        background-color: var(--color__gray--light);
+        color: var(--color__gray--lightest);
     }
 }
 
@@ -124,4 +124,8 @@ button {
 .button--inline {
     margin-top: var(--spacing__vertical--n1);
     margin-right: var(--spacing__horizontal--n1);
+}
+
+.button--highlighted {
+    background-color: var(--color__tertiary);
 }

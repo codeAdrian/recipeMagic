@@ -23,7 +23,7 @@
     min-height: var(--spacing__vertical--1);
     min-width: var(--spacing__horizontal--1);
     background-color: currentColor;
-    margin-right: var(--spacing__horizontal--1);
+    margin-right: var(--spacing__horizontal--n1);
 }
 
 .dietGraph__graph--0 {

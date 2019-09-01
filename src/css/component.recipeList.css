@@ -13,6 +13,25 @@
     padding: var(--spacing__vertical--1) var(--spacing__horizontal--n1);
 }
 
+.recipeCard__image--skeleton {
+    padding-bottom: 100%;
+    background-color: var(--color__gray--lighter);
+}
+
+.recipeCard__skeleton {
+    display: inline-block;
+    background-color: var(--color__gray--lighter);
+    padding-bottom: var(--spacing__vertical--1);
+}
+
+.recipeCard__skeleton--medium {
+    width: 33%;
+}
+
+.recipeCard__skeleton--large {
+    width: 100%;
+}
+
 .recipeCard__link {
     display: flex;
     flex-direction: column;

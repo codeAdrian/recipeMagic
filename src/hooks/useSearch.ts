@@ -1,7 +1,15 @@
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
-export const useSearch: any = (initialValue: string, submitCallback: any) => {
-    const [searchQuery, setSearchQuery] = useState(initialValue || '');
+export const useSearch: any = (submitCallback: any) => {
+    const initialValue = useSelector((state: any) => state.filters.searchQuery);
+    const [searchQuery, setSearchQuery] = useState<string>(initialValue);
+
+    useEffect(() => {
+        if (initialValue !== searchQuery) {
+            setSearchQuery(initialValue);
+        }
+    }, [initialValue]);
 
     const onSearchInputChange = useCallback(event => {
         const { value } = event.currentTarget || event.srcElement;
@@ -24,7 +32,7 @@ export const useSearch: any = (initialValue: string, submitCallback: any) => {
         [onSearchInputChange, onSearchSubmit]
     );
 
-    const state = { searchQuery };
+    const state = { searchQuery: searchQuery };
 
     return [state, api];
 };

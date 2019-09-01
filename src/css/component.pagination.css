@@ -1,0 +1,23 @@
+.pagination {
+    padding-top: var(--spacing__vertical--2);
+    padding-bottom: var(--spacing__vertical--3);
+    display: flex;
+    justify-content: center;
+}
+
+.pagination__button {
+    padding: var(--spacing__vertical--n1) var(--spacing__horizontal--n1);
+    min-width: var(--spacing__vertical--2);
+    background-color: var(--color__gray--lighter);
+    border-radius: 100%;
+    font-weight: var(--typography__weight--bold);
+
+    &:disabled {
+        color: var(--color__gray--lightest);
+        background: var(--color__gradient--cta);
+    }
+
+    &:not(:last-child) {
+        margin-right: var(--spacing__horizontal--n1);
+    }
+}

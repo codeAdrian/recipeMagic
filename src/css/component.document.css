@@ -4,14 +4,6 @@ body {
     margin: 0;
 }
 
-body {
-    background-image: url('../assets/pattern-min.jpg');
-    background-size: 100%;
-    background-repeat-x: no-repeat;
-    background-repeat-y: repeat;
-    background-position-x: 50%;
-}
-
 main {
     min-height: 100vh;
     padding-top: var(--spacing__vertical--4);

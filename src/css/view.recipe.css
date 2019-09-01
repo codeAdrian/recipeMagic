@@ -2,19 +2,26 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    padding-bottom: var(--spacing__vertical--2);
+    padding-bottom: var(--spacing__vertical--3);
 }
 
 .recipe__header--image {
     padding-right: var(--spacing__horizontal--2);
+    flex-basis: calc(300px + var(--spacing__horizontal--2));
 }
 
 .recipe__title--main {
-    margin-bottom: 0;
+    margin-bottom: var(--spacing__vertical--n2);
+    flex-grow: 1;
 }
 
 .recipe__header--content {
     max-width: 768px;
+}
+
+.recipe__link {
+    color: var(--color__gray--darkest);
+    margin-bottom: var(--spacing__vertical--n1);
 }
 
 .recipe__wrapper {
@@ -23,7 +30,7 @@
     justify-content: flex-start;
 
     article {
-        padding-bottom: var(--spacing__vertical--1);
+        padding-bottom: var(--spacing__vertical--3);
         width: 50%;
 
         &:first-child {

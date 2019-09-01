@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useLayoutEffect } from 'react';
 import { RecipeCard, Loading } from 'components';
 import { useSelector } from 'react-redux';
 import { Pagination } from './Pagination';
+import { Skeleton } from './Skeleton';
 
 import step3 from 'assets/step1.png';
 import step2 from 'assets/step2.png';
@@ -16,16 +17,13 @@ export const RecipeList: React.FC<Props> = ({ getRecipeList, searchQuery }) => {
   const recipes = useSelector((state: any) => state.recipes);
   const filters = useSelector((state: any) => state.filters);
   const { hits, isLoading } = recipes;
+  console.log('HIT', hits);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     getRecipeList(filters);
   }, [filters]);
 
-  if ((!hits || hits.length === 0) && isLoading) return <Loading />;
-
-  console.log('HITS', hits);
-
-  if (hits.length === 0) {
+  if (hits.length === 0 && !isLoading) {
     return (
       <div className="recipeList__start">
         <div className="recipeList__images">
@@ -47,11 +45,15 @@ export const RecipeList: React.FC<Props> = ({ getRecipeList, searchQuery }) => {
   return (
     <>
       <ul className="recipeList">
-        {hits.map(({ recipe }: any) => (
-          <RecipeCard key={recipe.uri} {...recipe} />
-        ))}
+        {isLoading
+          ? [...new Array(24)].map((item, index) => (
+              <Skeleton key={`skeleton-${index}`}></Skeleton>
+            ))
+          : hits.map(({ recipe }: any) => (
+              <RecipeCard key={recipe.uri} {...recipe} />
+            ))}
       </ul>
-      <Pagination {...recipes} />
+      <Pagination currentPage={filters.currentPage} {...recipes} />
     </>
   );
 };

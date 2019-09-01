@@ -8,8 +8,6 @@ export const DietGraph = ({ digest }: any) => {
     0
   );
 
-  console.log('SUM', digest);
-
   return (
     <ul className="dietGraph">
       {digest.map(

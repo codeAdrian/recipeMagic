@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { DietGraph } from './DietGraph';
 import { isObjectEmpty } from 'util/isObjectEmpty';
-import { Loading } from 'components';
+import { Loading, LazyImage } from 'components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
@@ -50,10 +50,13 @@ export const RecipeDetails: React.FC<any> = ({ getRecipeDetails, id }) => {
     <section className="container container--withPadding">
       <header className="recipe__header">
         <div className="recipe__header--image">
-          <img src={image} alt={label} />
+          <LazyImage src={image} alt={label} />
         </div>
         <div className="recipe__header--content">
-          <Link className="button button--secondary" to="/recipes">
+          <Link
+            className="button button--secondary recipe__link"
+            to="/recipes/list"
+          >
             <FontAwesomeIcon icon={faArrowLeft} /> Return to recipes
           </Link>
           <h2 className="heading heading--level1 recipe__title--main">

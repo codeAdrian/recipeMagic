@@ -1,5 +1,6 @@
-import React, { useCallback, useLayoutEffect } from 'react';
+import React, { useCallback, useLayoutEffect, useEffect } from 'react';
 import anime from 'animejs';
+import { withRouter } from 'react-router-dom';
 import {
   RecipeList,
   Search,
@@ -10,9 +11,9 @@ import {
 import { FILTERS_TYPES } from 'modules/Filters/redux/types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEdamam, useSearch } from 'hooks';
-import { RecipeCategories } from 'components';
+import qs from 'qs';
 
-export const RecipeListPage = () => {
+const RecipeListPage = ({ history }: any) => {
   const [{ getRecipeList }] = useEdamam();
   const dispatch = useDispatch();
   const fadeIn = () => {
@@ -40,6 +41,17 @@ export const RecipeListPage = () => {
   const recipes = useSelector((state: any) => state.recipes);
   const filters = useSelector((state: any) => state.filters);
 
+  const queryFilters = filters;
+  delete queryFilters.isLoading;
+
+  const queryString = qs.stringify(queryFilters);
+
+  useEffect(() => {
+    history.push({
+      search: `?${queryString}`
+    });
+  }, [queryString]);
+
   const { hits } = recipes;
 
   const { searchQuery, ingredients, healthLabels, dietLabels } = filters;
@@ -51,27 +63,21 @@ export const RecipeListPage = () => {
     ingredients.length === 0 &&
     healthLabels.length === 0;
 
-  const [state, api] = useSearch(currentQuery, handleSearchSubmit);
-
-  console.log('STATE', { state, currentQuery });
+  const [state, api] = useSearch(handleSearchSubmit);
 
   return (
     <div className="container--withPadding container">
-      {isInitialLoad ? (
-        <RecipeCategories />
-      ) : (
-        <>
-          <aside className="filters">
-            <div className="filters__group">
-              <Ingredients />
-              <HealthFilters />
-              <DietFilters />
-            </div>
-            <Search currentQuery={currentQuery} {...state} {...api} />
-          </aside>
-          <RecipeList {...state} getRecipeList={getRecipeList} />
-        </>
-      )}
+      <aside className="filters">
+        <div className="filters__group">
+          <Ingredients />
+          <HealthFilters />
+          <DietFilters />
+        </div>
+        <Search currentQuery={currentQuery} {...state} {...api} />
+      </aside>
+      <RecipeList {...state} getRecipeList={getRecipeList} />
     </div>
   );
 };
+
+export default withRouter(RecipeListPage);

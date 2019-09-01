@@ -4,6 +4,10 @@
     margin-right: auto;
 }
 
+.container--medium {
+    max-width: var(--container__width--medium);
+}
+
 .container--withPadding {
     padding-left: var(--spacing__horizontal--1);
     padding-right: var(--spacing__horizontal--1);

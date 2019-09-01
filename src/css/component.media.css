@@ -6,3 +6,16 @@ img {
 svg {
     max-width: 100%;
 }
+
+.media__wrapper {
+    padding-bottom: 100%;
+    position: relative;
+    background-color: var(--color__gray--lighter);
+
+    img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+}

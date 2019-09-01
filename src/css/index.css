@@ -11,6 +11,7 @@
 @import './component.document';
 @import './component.link';
 @import './component.recipeList';
+@import './component.pagination';
 @import './component.media';
 @import './component.buttons';
 @import './component.logo';

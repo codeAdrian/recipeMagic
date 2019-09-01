@@ -3,7 +3,7 @@ import { useDropdown } from 'hooks';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
-export const Toggleable = ({ children, title }: any) => {
+export const Toggleable = ({ children, title, additionalClasses }: any) => {
   const { elementRef, expanded, setExpanded } = useDropdown();
 
   const handleToggleClick = () => {
@@ -15,7 +15,7 @@ export const Toggleable = ({ children, title }: any) => {
       <button
         className={`button--secondary toggleable__button ${
           expanded ? 'toggleable__button--active' : ''
-        }`}
+        } ${additionalClasses ? additionalClasses : ''}`}
         onClick={handleToggleClick}
       >
         <span className="button__label">{title}</span>

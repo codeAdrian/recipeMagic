@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+import { LazyImage } from 'components';
 import { getUri } from 'util/getUri';
 
 export const RecipeCard = ({
@@ -13,7 +14,7 @@ export const RecipeCard = ({
   return (
     <li className="recipeCard">
       <Link className="recipeCard__link" to={`/recipes/recipe/${getUri(uri)}`}>
-        <img className="recipeCard__image" src={image} alt={label} />
+        <LazyImage className="recipeCard__image" src={image} alt={label} />
         <div className="recipeCard__wrapper">
           <div>
             <h3 className="recipeCard__title">{label}</h3>
