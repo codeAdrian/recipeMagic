@@ -1,11 +1,11 @@
-@import './global.variables.spacing';
-@import './global.variables.colors';
-@import './global.variables.typography';
+@import './variables.spacing';
+@import './variables.colors';
+@import './variables.typography';
 
-@import './global.calculation.spacing';
-@import './global.calculation.typography';
+@import './calculation.spacing';
+@import './calculation.typography';
 
-@import './global.util';
+@import './util';
 
 @import './component.typography';
 @import './component.document';
@@ -24,10 +24,11 @@
 @import './component.input';
 @import './component.dropdown';
 @import './component.table';
-@import './component.list';
 @import './component.toggleable';
 @import './component.recipeCategories';
 
 @import './view.home';
 @import './view.recipes';
 @import './view.recipe';
+
+@import './vendor.toastify';

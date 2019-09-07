@@ -13,11 +13,15 @@
     font-weight: var(--typography__weight--bold);
 
     &:disabled {
-        color: var(--color__gray--lightest);
-        background: var(--color__gradient--cta);
+        opacity: 0.5;
     }
 
     &:not(:last-child) {
         margin-right: var(--spacing__horizontal--n1);
     }
+}
+
+.pagination__button--current {
+    color: var(--color__gray--lightest);
+    background: var(--color__gradient--cta);
 }

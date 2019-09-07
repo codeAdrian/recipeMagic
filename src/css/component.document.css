@@ -18,3 +18,26 @@ html {
 *:after {
     box-sizing: inherit;
 }
+
+.list--styled {
+    margin: 0;
+    list-style: none;
+    padding-left: var(--spacing__horizontal--1);
+
+    li {
+        padding-bottom: var(--spacing__vertical--n2);
+
+        &:before {
+            --w1: var(--spacing__horizontal--n1);
+            --w2: var(--spacing__horizontal--n2);
+            content: '\2022';
+            color: var(--color__secondary);
+            font-weight: bold;
+            font-size: 1.5em;
+            line-height: 1;
+            display: inline-block;
+            width: calc(var(--w1) + var(--w2));
+            margin-left: calc(-1 * (var(--w1) + var(--w2)));
+        }
+    }
+}

@@ -7,6 +7,7 @@ import { Toggleable } from 'components';
 
 export const Ingredients = () => {
   const dispatch = useDispatch();
+  const isTimerActive = useSelector((state: any) => state.apiTimer.isActive);
   const ingredients = useSelector((state: any) => state.filters.ingredients);
   const [inputValue, setInputValue] = useState('');
   const handleInputChange = useCallback(
@@ -19,6 +20,7 @@ export const Ingredients = () => {
 
   const handleRemove = useCallback(
     event => {
+      if (isTimerActive) return;
       const { value } = event.currentTarget || event.srcElement;
       const newValues = ingredients.filter(
         (ingredient: string) => ingredient !== value
@@ -33,6 +35,7 @@ export const Ingredients = () => {
 
   const handleSubmit = useCallback(
     event => {
+      if (isTimerActive) return;
       event.preventDefault();
       dispatch({
         type: FILTERS_TYPES.FILTERS_ADD,
@@ -66,6 +69,7 @@ export const Ingredients = () => {
         <button
           className="button button--regular button--cta button--icon"
           type="submit"
+          disabled={isTimerActive}
         >
           <FontAwesomeIcon icon={faPlus} />
         </button>
@@ -77,6 +81,7 @@ export const Ingredients = () => {
             value={ingredient}
             onClick={handleRemove}
             key={key}
+            disabled={isTimerActive}
           >
             <FontAwesomeIcon icon={faTimes} />
             {ingredient}

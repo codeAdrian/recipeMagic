@@ -54,7 +54,7 @@ const RecipeListPage = ({ history }: any) => {
   const [state, api] = useSearch(handleSearchSubmit);
 
   return (
-    <div className="container--withPadding container">
+    <div className="container">
       <aside className="filters">
         <div className="filters__group">
           <Ingredients />

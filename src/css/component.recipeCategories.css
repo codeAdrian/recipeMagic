@@ -23,7 +23,12 @@
     }
 
     li {
-        flex: 1 1 25%;
+        flex: 1 1 50%;
+        padding: 0 var(--spacing__horizontal--n1);
+
+        @media (--mq__tablet--min) {
+            flex: 1 1 25%;
+        }
     }
 }
 

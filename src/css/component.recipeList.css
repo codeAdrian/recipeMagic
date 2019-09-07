@@ -1,3 +1,5 @@
+@import './variables.mediaqueries';
+
 .recipeList {
     text-align: center;
     list-style: none;
@@ -8,20 +10,21 @@
 }
 
 .recipeCard {
-    flex-basis: 23%;
     margin-top: 0;
     margin-bottom: 0;
-    margin-right: 2.66%;
-    padding: var(--spacing__vertical--1) 0;
+    padding: var(--spacing__vertical--1) var(--spacing__horizontal--n1);
+    flex-basis: 100%;
 
-    &:nth-child(4n + 1) {
-        margin-left: 0;
-        padding-left: 0;
+    @media (--mq__phabletCustom--min) {
+        flex-basis: 50%;
     }
 
-    &:nth-child(4n + 4) {
-        margin-right: 0;
-        padding-right: 0;
+    @media (--mq__tablet--min) {
+        flex-basis: 33.33%;
+    }
+
+    @media (--mq__desktop--min) {
+        flex-basis: 25%;
     }
 }
 
@@ -49,6 +52,9 @@
     flex-direction: column;
     position: relative;
     height: 100%;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
 
     &,
     &:visited {
@@ -82,4 +88,13 @@
 
 .recipeCard__info {
     padding-bottom: var(--spacing__vertical--1);
+}
+
+.filters {
+    padding-left: var(--spacing__horizontal--n1);
+    padding-right: var(--spacing__horizontal--n1);
+    @media (--mq__desktop--min) {
+        padding-left: var(--spacing__horizontal--1);
+        padding-right: var(--spacing__horizontal--1);
+    }
 }

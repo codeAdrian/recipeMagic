@@ -1,6 +1,6 @@
 import { categories } from 'const';
 import { FILTERS_TYPES } from 'modules/Filters/redux/types';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import React, { useCallback, useLayoutEffect } from 'react';
 import { useSearch } from 'hooks';
 import { Search } from 'modules';
@@ -10,6 +10,7 @@ import { withRouter } from 'react-router';
 
 const RecipeCategories = ({ history }: any) => {
   const dispatch = useDispatch();
+  const isTimerActive = useSelector((state: any) => state.apiTimer.isActive);
 
   const fadeIn = () => {
     const fadeIn = anime.timeline();
@@ -59,6 +60,7 @@ const RecipeCategories = ({ history }: any) => {
   }, []);
 
   const handleSearchSubmit = useCallback(async (query: string) => {
+    if (isTimerActive) return;
     await dispatch({ type: FILTERS_TYPES.FILTERS_RESET });
     await dispatch({
       type: FILTERS_TYPES.FILTERS_ADD,
@@ -80,7 +82,7 @@ const RecipeCategories = ({ history }: any) => {
         </div>
         <div className="recipeCategories__heroBackground"></div>
       </article>
-      <div className="container container--withPadding">
+      <div className="container">
         {categories.map(({ items, title, key }: any) => (
           <article className="recipeCategories__wrapper">
             <h2 className="heading heading--level2 recipeCategories__title">

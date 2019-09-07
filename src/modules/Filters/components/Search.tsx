@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { useSelector } from 'react-redux';
 
 interface Props {
   onSearchInputChange: any;
@@ -13,6 +14,8 @@ export const Search: React.FC<Props> = ({
   onSearchSubmit,
   searchQuery
 }) => {
+  const isTimerActive = useSelector((state: any) => state.apiTimer.isActive);
+
   return (
     <form className="inputWrapper--withButton" onSubmit={onSearchSubmit}>
       <input
@@ -25,6 +28,7 @@ export const Search: React.FC<Props> = ({
       <button
         className="button button--regular button--cta button--icon"
         type="submit"
+        disabled={isTimerActive}
       >
         <FontAwesomeIcon icon={faSearch} />
       </button>

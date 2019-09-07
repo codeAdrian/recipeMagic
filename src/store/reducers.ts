@@ -1,4 +1,4 @@
-import { combineReducers } from "redux";
-import { filters, recipe, recipes } from "modules";
+import { combineReducers } from 'redux';
+import { filters, recipe, recipes, apiTimer } from 'modules';
 
-export default combineReducers({ filters, recipe, recipes });
+export default combineReducers({ filters, recipe, recipes, apiTimer });

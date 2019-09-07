@@ -17,7 +17,6 @@ export const RecipeList: React.FC<Props> = ({ getRecipeList, searchQuery }) => {
   const recipes = useSelector((state: any) => state.recipes);
   const filters = useSelector((state: any) => state.filters);
   const { hits, isLoading } = recipes;
-  console.log('HIT', hits);
 
   useLayoutEffect(() => {
     getRecipeList(filters);

@@ -12,6 +12,7 @@ import { Toggleable } from 'components';
 
 export const DietFilters = () => {
   const selectedLabels = useSelector((state: any) => state.filters.dietLabels);
+  const isTimerActive = useSelector((state: any) => state.apiTimer.isActive);
   const [filter, setFilters] = useState<string>(selectedLabels || '');
   const dispatch = useDispatch();
 
@@ -22,6 +23,7 @@ export const DietFilters = () => {
   };
 
   const handleSubmit = (event: any) => {
+    if (isTimerActive) return;
     event.preventDefault();
     dispatch({
       type: FILTERS_TYPES.FILTERS_ADD,
@@ -30,6 +32,7 @@ export const DietFilters = () => {
   };
 
   const handleReset = (event: any) => {
+    if (isTimerActive) return;
     event.preventDefault();
     setFilters('');
     dispatch({
@@ -72,6 +75,7 @@ export const DietFilters = () => {
         </div>
 
         <button
+          disabled={isTimerActive}
           className="button button--control button--regular button--cta"
           type="submit"
         >
@@ -79,6 +83,7 @@ export const DietFilters = () => {
         </button>
 
         <button
+          disabled={isTimerActive}
           className="button button--control button--regular button--primary"
           type="reset"
         >

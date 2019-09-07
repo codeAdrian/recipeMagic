@@ -3,8 +3,6 @@ import qs from 'qs';
 
 const PARSED_QUERY_STRING = qs.parse(window.location.search.slice(1));
 
-console.log('PARSED', PARSED_QUERY_STRING);
-
 const INITIAL_STATE: any = {
     isLoading: true,
     searchQuery: '',

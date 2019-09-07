@@ -14,6 +14,7 @@ export const HealthFilters = () => {
   const selectedLabels = useSelector(
     (state: any) => state.filters.healthLabels
   );
+  const isTimerActive = useSelector((state: any) => state.apiTimer.isActive);
   const [filters, setFilters] = useState<string[]>(selectedLabels || []);
   const dispatch = useDispatch();
 
@@ -29,6 +30,7 @@ export const HealthFilters = () => {
   };
 
   const handleSubmit = (event: any) => {
+    if (isTimerActive) return;
     event.preventDefault();
     dispatch({
       type: FILTERS_TYPES.FILTERS_ADD,
@@ -37,6 +39,7 @@ export const HealthFilters = () => {
   };
 
   const handleReset = (event: any) => {
+    if (isTimerActive) return;
     event.preventDefault();
     dispatch({
       type: FILTERS_TYPES.FILTERS_ADD,
@@ -81,6 +84,7 @@ export const HealthFilters = () => {
         <button
           className="button button--control  button--regular button--cta"
           type="submit"
+          disabled={isTimerActive}
         >
           Apply Labels
         </button>
@@ -88,6 +92,7 @@ export const HealthFilters = () => {
         <button
           className="button button--control  button--regular button--primary"
           type="reset"
+          disabled={isTimerActive}
         >
           Clear
         </button>
