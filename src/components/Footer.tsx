@@ -16,7 +16,7 @@ export const Footer = () => {
           <strong className="footer__sectionTitle">Recipe Magic</strong>
           <ul className="footer__list">
             <li>Home</li>
-            <li>About</li>
+            <li>Saved Recipes</li>
             <li>Recipes</li>
           </ul>
         </div>

@@ -50,10 +50,9 @@ export const useEdamam = () => {
             currentPage
         } = filters;
         const fromTo = buildFromToQuery(currentPage);
-        let buildQuery = `q=${searchQuery}`;
+        let buildQuery = `${searchQuery}${fromTo}`;
         if (ingredients.length > 0) {
-            const withSearchQuery = searchQuery ? `${buildQuery},` : buildQuery;
-            buildQuery = `${withSearchQuery}${ingredients.join(',')}`;
+            buildQuery = `${buildQuery},${ingredients.join(',')}`;
         }
         if (healthLabels.length > 0) {
             const healthQuery = healthLabels.join('&health=');
@@ -62,7 +61,7 @@ export const useEdamam = () => {
         if (dietLabels) {
             buildQuery = `${buildQuery}&diet=${dietLabels}`;
         }
-        buildQuery = `${buildQuery}${fromTo}`;
+        console.log('WOOP', buildQuery);
         return buildQuery;
     };
 
@@ -73,7 +72,7 @@ export const useEdamam = () => {
 
         try {
             fetch(
-                `${API.URL}${q}&app_id=${API.ID}&app_key=${API.KEY}&from=0&to=24`
+                `${API.URL}q=${q}&app_id=${API.ID}&app_key=${API.KEY}&from=0&to=24`
             )
                 .then(handleResponse)
                 .then(handleListData)

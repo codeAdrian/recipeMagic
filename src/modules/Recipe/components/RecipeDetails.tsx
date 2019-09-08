@@ -1,23 +1,24 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useLayoutEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { DietGraph } from './DietGraph';
 import { isObjectEmpty } from 'util/isObjectEmpty';
 import { LazyImage, Accordion } from 'components';
 import { Skeleton } from './Skeleton';
+import { useSavedRecipes } from 'hooks';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { toast } from 'react-toastify';
 
 export const RecipeDetails: React.FC<any> = ({ getRecipeDetails, id }) => {
   const recipe = useSelector((state: any) => state.recipe);
+  const { setItem, getItem } = useSavedRecipes();
 
   useLayoutEffect(() => {
     getRecipeDetails(
       `http://www.edamam.com/ontologies/edamam.owl#recipe_${id}`
     );
   }, []);
-
-  if (isObjectEmpty(recipe) || recipe.isLoading) return <Skeleton />;
 
   const {
     calories,
@@ -34,6 +35,32 @@ export const RecipeDetails: React.FC<any> = ({ getRecipeDetails, id }) => {
     totalNutrients,
     image
   } = recipe;
+
+  const handleSaveRecipe = useCallback(() => {
+    const savedRecipes = getItem() || [];
+
+    const isSame = savedRecipes.find((recipe: any) => recipe.url === url);
+
+    if (isSame) {
+      toast('Recipe already saved :)', {
+        position: toast.POSITION.BOTTOM_RIGHT
+      });
+      return;
+    }
+
+    savedRecipes.push({
+      label,
+      id,
+      image,
+      source
+    });
+    toast.success('Recipe saved! :)', {
+      position: toast.POSITION.BOTTOM_RIGHT
+    });
+    setItem(JSON.stringify(savedRecipes));
+  }, [recipe]);
+
+  if (isObjectEmpty(recipe) || recipe.isLoading) return <Skeleton />;
 
   const servings = recipe.yield;
 
@@ -67,7 +94,8 @@ export const RecipeDetails: React.FC<any> = ({ getRecipeDetails, id }) => {
             By{' '}
             <a href={url}>
               <strong className="gradient--text">{source}</strong>
-            </a>
+            </a>{' '}
+            | <button onClick={handleSaveRecipe}>Save recipe</button>
           </p>
 
           <div>
@@ -126,7 +154,7 @@ export const RecipeDetails: React.FC<any> = ({ getRecipeDetails, id }) => {
         </article>
 
         <article>
-          <h3 className="heading heading--level3">Diet</h3>
+          <h3 className="heading heading--level4">Diet</h3>
           <p className="paragraph">{labels.join(', ')}</p>
           <DietGraph digest={digest} />
         </article>

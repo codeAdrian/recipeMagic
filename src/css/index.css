@@ -26,6 +26,7 @@
 @import './component.table';
 @import './component.toggleable';
 @import './component.recipeCategories';
+@import './component.savedRecipes';
 
 @import './view.home';
 @import './view.recipes';

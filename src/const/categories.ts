@@ -99,9 +99,9 @@ const categoryVegan = {
 };
 
 const categoryVegeterian = {
-    data: ['vegeterian'],
+    data: ['vegetarian'],
     image: vegeterian,
-    category: 'Vegeterian'
+    category: 'Vegetarian'
 };
 
 const categoryLowSugar = {

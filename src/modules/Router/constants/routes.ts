@@ -16,9 +16,9 @@ export const routes: AppRoute[] = [
         exact: true
     },
     {
-        title: 'About',
-        path: '/about',
-        component: views.About,
+        title: 'Saved Recipes',
+        path: '/saved-recipes',
+        component: views.SavedRecipes,
         exact: true
     },
     {
