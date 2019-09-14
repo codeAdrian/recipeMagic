@@ -10,19 +10,22 @@ export const Skeleton = () => (
         <div className="recipe__image--skeleton" />
       </div>
       <div className="recipe__header--content">
-        <Link
-          className="button button--secondary recipe__link"
-          to="/recipes/list"
-        >
-          <FontAwesomeIcon icon={faArrowLeft} /> Return to recipes
-        </Link>
-        <h2 className="heading heading--level1 recipe__title--main">
-          <div className="recipe__title--skeleton" />
-        </h2>
-        <p className="paragraph">
-          <div className="recipe__text--skeleton" />
-        </p>
-
+        <div>
+          <Link
+            className="button button--secondary recipe__link"
+            to="/recipes/list"
+          >
+            <FontAwesomeIcon icon={faArrowLeft} /> Return to recipes
+          </Link>
+        </div>
+        <div>
+          <h2 className="heading heading--level1 recipe__title--main">
+            <div className="recipe__title--skeleton" />
+          </h2>
+          <p className="paragraph">
+            <div className="recipe__text--skeleton" />
+          </p>
+        </div>
         <div>
           <div className="recipe__text--skeleton" />
         </div>

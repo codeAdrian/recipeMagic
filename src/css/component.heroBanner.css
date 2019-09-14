@@ -1,13 +1,19 @@
+@import './variables.mediaqueries';
+
 .heroBanner {
     color: var(--color__gray--lightest);
     text-align: center;
     min-height: 35vh;
     position: relative;
     margin-top: calc(-1 * var(--spacing__vertical--1));
-    margin-bottom: var(--spacing__vertical--3);
+    margin-bottom: var(--spacing__vertical--2);
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+
+    @media (--mq__tablet--min) {
+        margin-bottom: var(--spacing__vertical--3);
+    }
 }
 
 .heroBanner__background {
