@@ -3,9 +3,16 @@
 }
 
 .logo__link {
+    display: block;
     font-family: var(--typography__fontFamily--tertiary);
     font-size: var(--typography__larger);
-    line-height: var(--spacing__vertical--2);
+    padding-top: calc(
+        var(--spacing__vertical--n2) + var(--spacing__vertical--n3)
+    );
+    padding-bottom: var(--spacing__vertical--n3);
+    line-height: calc(
+        var(--spacing__vertical--1) + var(--spacing__vertical--n3)
+    );
 
     &,
     &:visited {

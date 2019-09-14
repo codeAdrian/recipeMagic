@@ -1,3 +1,5 @@
+@import './variables.mediaqueries';
+
 html,
 body {
     min-height: 100vh;
@@ -5,9 +7,13 @@ body {
 }
 
 main {
+    padding-top: var(--spacing__vertical--3);
     min-height: 100vh;
-    padding-top: var(--spacing__vertical--4);
     opacity: 0;
+
+    @media (--mq__tablet--min) {
+        padding-top: var(--spacing__vertical--4);
+    }
 }
 
 html {

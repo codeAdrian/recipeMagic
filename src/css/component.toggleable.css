@@ -1,3 +1,5 @@
+@import './variables.mediaqueries';
+
 .toggleable {
     position: relative;
     display: inline-block;
@@ -10,7 +12,9 @@
     right: 0;
     background-color: var(--color__gray--lightest);
     display: none;
-    min-width: 400px;
+    @media (--mq__mobileLandscape--min) {
+        min-width: 400px;
+    }
     z-index: 2;
     padding: var(--spacing__vertical--1) var(--spacing__horizontal--1);
     box-shadow: 0 0 4px 1px var(--color__gray--lighter);

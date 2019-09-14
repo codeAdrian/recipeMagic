@@ -1,29 +1,47 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo, useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { SAVED_RECIPES_TYPES } from 'modules';
 
-export const useSavedRecipes = () => {
+const LOCALSTORAGE_SAVED_RECIPES = 'SAVED_RECIPES';
+
+type Hook = () => any;
+
+export const useSavedRecipes: Hook = () => {
+    const dispatch = useDispatch();
+    const savedRecipes = useSelector((state: any) => state.savedRecipes);
+
     const setItem = useCallback(
-        data => localStorage.setItem('savedRecipes', data),
-        []
+        data => {
+            localStorage.setItem(
+                LOCALSTORAGE_SAVED_RECIPES,
+                JSON.stringify(data)
+            );
+            dispatch({
+                type: SAVED_RECIPES_TYPES.SAVED_RECIPES_SAVE,
+                payload: data
+            });
+        },
+        [dispatch]
     );
 
-    const getItem = useCallback(() => {
-        const jsonRecipes = localStorage.getItem('savedRecipes') || '[]';
-        return JSON.parse(jsonRecipes);
-    }, []);
+    const clear = useCallback(() => {
+        localStorage.removeItem(LOCALSTORAGE_SAVED_RECIPES);
+        dispatch({
+            type: SAVED_RECIPES_TYPES.SAVED_RECIPES_RESET
+        });
+    }, [dispatch]);
 
-    const clear = useCallback(
-        () => localStorage.removeItem('savedRecipes'),
-        []
-    );
+    const state = {
+        savedRecipes
+    };
 
     const api = useMemo(
         () => ({
             setItem,
-            getItem,
             clear
         }),
-        [setItem, getItem, clear]
+        [setItem, clear]
     );
 
-    return api;
+    return [state, api];
 };

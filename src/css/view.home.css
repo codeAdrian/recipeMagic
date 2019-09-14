@@ -1,44 +1,72 @@
+@import './variables.mediaqueries';
+
 .home__hero {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-height: 100vh;
     margin-bottom: var(--spacing__vertical--4);
-    margin-top: calc(-1 * var(--spacing__vertical--4));
+    flex-direction: column-reverse;
+    margin-top: calc(-1 * var(--spacing__vertical--3));
+
+    @media (--mq__tablet--min) {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        max-height: 100vh;
+        margin-top: calc(-1 * var(--spacing__vertical--4));
+    }
 }
 
 .home__hero--text {
-    transform: translateX(-200px);
-    justify-self: flex-end;
-    padding-right: var(--spacing__horizontal--4);
-    max-width: 660px;
-    margin-left: auto;
-    margin-right: 0;
-    padding-left: var(--spacing__horizontal--2);
-    flex-basis: 50%;
+    padding-right: var(--spacing__horizontal--1);
+    padding-left: var(--spacing__horizontal--1);
+
+    @media (--mq__tablet--min) {
+        transform: translateX(-200px);
+        justify-self: flex-end;
+        padding-left: var(--spacing__horizontal--2);
+        padding-right: var(--spacing__horizontal--4);
+        max-width: 660px;
+        margin-left: auto;
+        margin-right: 0;
+        flex-basis: 50%;
+    }
 }
 
 .home__hero--image {
     display: block;
     text-align: right;
     flex-basis: 50%;
+    margin-bottom: var(--spacing__vertical--2);
+
+    @media (--mq__tablet--min) {
+        margin-bottom: 0;
+    }
 }
 
 .home__about {
     text-align: center;
-    padding-bottom: var(--spacing__vertical--4);
+
+    @media (--mq__tablet--min) {
+        padding-bottom: var(--spacing__vertical--4);
+    }
 }
 
 .home__wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    @media (--mq__tablet--min) {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
 }
 
 .home__card {
     flex-basis: 31%;
     padding: var(--spacing__vertical--2) var(--spacing__horizontal--1);
     box-shadow: 0 0 0.3em 0.15em var(--color__gray--lighter);
+    margin-bottom: var(--spacing__vertical--2);
+
+    @media (--mq__tablet--min) {
+        margin-bottom: 0;
+    }
 }
 
 .home__image {

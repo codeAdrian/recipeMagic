@@ -1,8 +1,7 @@
-import React, { useLayoutEffect, useCallback } from 'react';
+import React, { useLayoutEffect, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { DietGraph } from './DietGraph';
-import { isObjectEmpty } from 'util/isObjectEmpty';
 import { LazyImage, Accordion } from 'components';
 import { Skeleton } from './Skeleton';
 import { useSavedRecipes } from 'hooks';
@@ -12,7 +11,9 @@ import { toast } from 'react-toastify';
 
 export const RecipeDetails: React.FC<any> = ({ getRecipeDetails, id }) => {
   const recipe = useSelector((state: any) => state.recipe);
-  const { setItem, getItem } = useSavedRecipes();
+  const [{ savedRecipes }, { setItem }] = useSavedRecipes();
+
+  console.log('RECICI', recipe);
 
   useLayoutEffect(() => {
     getRecipeDetails(
@@ -36,12 +37,13 @@ export const RecipeDetails: React.FC<any> = ({ getRecipeDetails, id }) => {
     image
   } = recipe;
 
+  const isRecipeSaved = useMemo(
+    () => savedRecipes.find((recipe: any) => recipe.id === id),
+    [savedRecipes, id]
+  );
+
   const handleSaveRecipe = useCallback(() => {
-    const savedRecipes = getItem() || [];
-
-    const isSame = savedRecipes.find((recipe: any) => recipe.url === url);
-
-    if (isSame) {
+    if (isRecipeSaved) {
       toast('Recipe already saved :)', {
         position: toast.POSITION.BOTTOM_RIGHT
       });
@@ -57,10 +59,10 @@ export const RecipeDetails: React.FC<any> = ({ getRecipeDetails, id }) => {
     toast.success('Recipe saved! :)', {
       position: toast.POSITION.BOTTOM_RIGHT
     });
-    setItem(JSON.stringify(savedRecipes));
-  }, [recipe]);
+    setItem(savedRecipes);
+  }, [recipe, savedRecipes]);
 
-  if (isObjectEmpty(recipe) || recipe.isLoading) return <Skeleton />;
+  if (!url || !label || !source || recipe.isLoading) return <Skeleton />;
 
   const servings = recipe.yield;
 
@@ -92,10 +94,17 @@ export const RecipeDetails: React.FC<any> = ({ getRecipeDetails, id }) => {
           </h2>
           <p className="paragraph">
             By{' '}
-            <a href={url}>
+            <a href={url} target="_blank" rel="nofollow noreferrer">
               <strong className="gradient--text">{source}</strong>
             </a>{' '}
-            | <button onClick={handleSaveRecipe}>Save recipe</button>
+            |{' '}
+            {isRecipeSaved ? (
+              <span>Recipe Saved</span>
+            ) : (
+              <button onClick={handleSaveRecipe}>
+                <strong className="gradient--text">Save Recipe</strong>
+              </button>
+            )}
           </p>
 
           <div>
@@ -119,13 +128,18 @@ export const RecipeDetails: React.FC<any> = ({ getRecipeDetails, id }) => {
           <h3 className="heading heading--level3">Preparation</h3>
           <p className="paragraph">
             This recipe is provided by{' '}
-            <a href={url}>
+            <a href={url} target="_blank" rel="nofollow noreferrer">
               <strong className="gradient--text">{source}</strong>
             </a>
             . You can view the detailed preparation instructions by clicking the
             following link.
           </p>
-          <a href={url} className="button button--regular button--cta">
+          <a
+            href={url}
+            target="_blank"
+            rel="nofollow noreferrer"
+            className="button button--regular button--cta"
+          >
             Preparation Instructions
           </a>
         </article>

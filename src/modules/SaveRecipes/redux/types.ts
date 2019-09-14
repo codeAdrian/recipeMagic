@@ -1,0 +1,9 @@
+enum ActionTypes {
+    SAVED_RECIPES_SAVE = 'SAVED_RECIPES/SAVE',
+    SAVED_RECIPES_LOAD = 'SAVED_RECIPES/LOAD',
+    SAVED_RECIPES_RESET = 'SAVED_RECIPES/RESET'
+}
+
+export const SAVED_RECIPES_TYPES = {
+    ...ActionTypes
+};

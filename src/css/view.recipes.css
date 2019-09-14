@@ -1,12 +1,41 @@
+@import './variables.mediaqueries';
+
 .filters {
-    display: flex;
-    justify-content: space-between;
+    @media (--mq__desktop--min) {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    @media (--mq__phabletCustom--max) {
+        > .inputWrapper--withButton,
+        > .input {
+            width: 100%;
+        }
+    }
 }
 
 .filters__group {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    margin-bottom: var(--spacing__vertical--n1);
+    @media (--mq__mobileLandscape--min) {
+        display: inline-flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    @media (--mq__desktop--min) {
+        margin-bottom: 0;
+    }
+
+    @media (--mq__tablet--max) {
+        .toggleable {
+            width: 100%;
+            margin-bottom: var(--spacing__vertical--n1);
+
+            > button {
+                width: 100%;
+            }
+        }
+    }
 }
 
 .recipeList__start {

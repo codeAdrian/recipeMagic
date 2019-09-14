@@ -1,3 +1,5 @@
+@import './variables.mediaqueries';
+
 .recipeCategories {
     text-align: center;
 }

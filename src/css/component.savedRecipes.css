@@ -1,9 +1,20 @@
+@import './variables.mediaqueries';
+
 .savedRecipes__link {
-    display: flex;
-    flex-basis: 47%;
+    flex-basis: 100%;
+    max-width: 300px;
+    margin-bottom: var(--spacing__vertical--1);
+
+    @media (--mq__mobileLandscape--min) {
+        max-width: none;
+        margin-bottom: 3%;
+        display: flex;
+    }
+    @media (--mq__desktop--min) {
+        flex-basis: 47%;
+    }
     color: var(--color__gray--darkest);
     background-color: var(--color__gray--lightest);
-    margin-bottom: 3%;
     transition: box-shadow 0.3s ease-in-out;
     box-shadow: 0 0 calc(2 * var(--border__width--thick))
         var(--border__width--thick) var(--color__gray--lighter);
@@ -19,6 +30,10 @@
     margin: 0;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
+    @media (--mq__mobileLandscape--min) {
+        justify-content: flex-start;
+    }
 }
 
 .savedRecipes__image {
@@ -28,19 +43,31 @@
 
 .savedRecipes__content {
     flex-grow: 1;
-    padding: var(--spacing__vertical--1) var(--spacing__horizontal--1);
+    padding: var(--spacing__vertical--1) var(--spacing__horizontal--n2);
+    @media (--mq__mobileLandscape--min) {
+        padding: var(--spacing__vertical--1) var(--spacing__horizontal--1);
+    }
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
 }
 
 .savedRecipes__title {
-    padding-right: var(--spacing__horizontal--1);
+    @media (--mq__mobileLandscape--min) {
+        padding-right: var(--spacing__horizontal--1);
+    }
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
     flex-grow: 1;
+}
+
+.savedRecipes__titleText {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 .savedRecipes__button {

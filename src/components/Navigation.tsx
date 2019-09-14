@@ -1,13 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useSavedRecipes } from 'hooks';
+import { useSelector } from 'react-redux';
 
 export const Navigation = () => {
-  const { getItem } = useSavedRecipes();
-
-  const jsonRecipes = getItem() || [];
-  const savedRecipes = jsonRecipes.length;
-
+  const savedRecipes = useSelector((state: any) => state.savedRecipes);
+  const savedRecipesNum = savedRecipes.length || 0;
   return (
     <nav className="nav">
       <ul className="nav__list">
@@ -28,7 +25,8 @@ export const Navigation = () => {
             exact
             to="/saved-recipes"
           >
-            Saved Recipes ({savedRecipes})
+            Saved <span className="nav__link--hidden">Recipes</span> (
+            {savedRecipesNum})
           </NavLink>
         </li>
         <li className="nav__listItem">

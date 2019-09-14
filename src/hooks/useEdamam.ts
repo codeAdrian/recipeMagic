@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
 import { RECIPE_TYPES, RECIPE_LIST_TYPES, API_TIMER_TYPES } from 'modules';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
 const API = {
@@ -11,6 +11,8 @@ const API = {
 
 export const useEdamam = () => {
     const dispatch = useDispatch();
+    const query = useSelector((state: any) => state.recipes.query);
+    const id = useSelector((state: any) => state.recipe.id);
 
     const handleResponse = useCallback(response => {
         if (!response.ok) {
@@ -20,18 +22,18 @@ export const useEdamam = () => {
     }, []);
 
     const handleListData = useCallback(
-        (data: any) =>
+        ({ data, query }: any) =>
             dispatch({
                 type: RECIPE_LIST_TYPES.LOAD_RECIPE_LIST_SUCCESS,
-                payload: data
+                payload: { ...data, query }
             }),
         []
     );
 
-    const handleDetailsData = useCallback((data: any) => {
+    const handleDetailsData = useCallback(({ data, id }: any) => {
         dispatch({
             type: RECIPE_TYPES.LOAD_RECIPE_DETAILS_SUCCESS,
-            payload: data[0]
+            payload: { ...data[0], id }
         });
     }, []);
 
@@ -61,12 +63,17 @@ export const useEdamam = () => {
         if (dietLabels) {
             buildQuery = `${buildQuery}&diet=${dietLabels}`;
         }
-        console.log('WOOP', buildQuery);
         return buildQuery;
     };
 
     const getRecipeList = useCallback(filters => {
         const q = buildQuery(filters);
+
+        if (q === query) {
+            console.log('Q - ALREADY LOADED');
+            return;
+        }
+        console.log('Q - LOADING QUERY');
         dispatch({ type: RECIPE_LIST_TYPES.LOAD_RECIPE_LIST });
         dispatch({ type: API_TIMER_TYPES.API_TIMER_START });
 
@@ -75,7 +82,7 @@ export const useEdamam = () => {
                 `${API.URL}q=${q}&app_id=${API.ID}&app_key=${API.KEY}&from=0&to=24`
             )
                 .then(handleResponse)
-                .then(handleListData)
+                .then((data: any) => handleListData({ data, query: q }))
                 .catch(() => {
                     toast.error(
                         `Could not get the yummy recipes. Please refresh and try again 🙁`,
@@ -99,6 +106,13 @@ export const useEdamam = () => {
     }, []);
 
     const getRecipeDetails = useCallback(uri => {
+        if (id === uri) {
+            console.log('PAGE ALREADY LOADED');
+            return;
+        }
+
+        console.log('LOADING PAGE');
+
         try {
             dispatch({ type: RECIPE_TYPES.LOAD_RECIPE_DETAILS });
             fetch(
@@ -107,7 +121,7 @@ export const useEdamam = () => {
                 }&app_key=${API.KEY}`
             )
                 .then(handleResponse)
-                .then(handleDetailsData)
+                .then(data => handleDetailsData({ data, id: uri }))
                 .catch(error => {
                     console.error('ERROR', error);
                     return toast.error(error, {
