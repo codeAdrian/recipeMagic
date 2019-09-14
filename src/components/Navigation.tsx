@@ -15,7 +15,16 @@ export const Navigation = () => {
             exact
             to="/"
           >
-            Homepage
+            Home<span className="nav__link--hidden">page</span>
+          </NavLink>
+        </li>
+        <li className="nav__listItem">
+          <NavLink
+            activeClassName="nav__link--active"
+            className="nav__link"
+            to="/recipes"
+          >
+            Recipes
           </NavLink>
         </li>
         <li className="nav__listItem">
@@ -27,15 +36,6 @@ export const Navigation = () => {
           >
             Saved <span className="nav__link--hidden">Recipes</span> (
             {savedRecipesNum})
-          </NavLink>
-        </li>
-        <li className="nav__listItem">
-          <NavLink
-            activeClassName="nav__link--active"
-            className="nav__link"
-            to="/recipes"
-          >
-            Recipes
           </NavLink>
         </li>
       </ul>

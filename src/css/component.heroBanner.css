@@ -1,0 +1,24 @@
+.heroBanner {
+    color: var(--color__gray--lightest);
+    text-align: center;
+    min-height: 35vh;
+    position: relative;
+    margin-top: calc(-1 * var(--spacing__vertical--1));
+    margin-bottom: var(--spacing__vertical--3);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.heroBanner__background {
+    position: absolute;
+    opacity: 0.6;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: block;
+    height: 100%;
+    z-index: -1;
+    background: var(--color__gradient--cta);
+}

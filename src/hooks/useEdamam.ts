@@ -52,7 +52,7 @@ export const useEdamam = () => {
             currentPage
         } = filters;
         const fromTo = buildFromToQuery(currentPage);
-        let buildQuery = `${searchQuery}${fromTo}`;
+        let buildQuery = `${searchQuery}`;
         if (ingredients.length > 0) {
             buildQuery = `${buildQuery},${ingredients.join(',')}`;
         }
@@ -63,6 +63,8 @@ export const useEdamam = () => {
         if (dietLabels) {
             buildQuery = `${buildQuery}&diet=${dietLabels}`;
         }
+
+        buildQuery = `${buildQuery}${fromTo}`;
         return buildQuery;
     };
 
@@ -70,10 +72,9 @@ export const useEdamam = () => {
         const q = buildQuery(filters);
 
         if (q === query) {
-            console.log('Q - ALREADY LOADED');
             return;
         }
-        console.log('Q - LOADING QUERY');
+
         dispatch({ type: RECIPE_LIST_TYPES.LOAD_RECIPE_LIST });
         dispatch({ type: API_TIMER_TYPES.API_TIMER_START });
 
@@ -107,11 +108,8 @@ export const useEdamam = () => {
 
     const getRecipeDetails = useCallback(uri => {
         if (id === uri) {
-            console.log('PAGE ALREADY LOADED');
             return;
         }
-
-        console.log('LOADING PAGE');
 
         try {
             dispatch({ type: RECIPE_TYPES.LOAD_RECIPE_DETAILS });
@@ -122,12 +120,14 @@ export const useEdamam = () => {
             )
                 .then(handleResponse)
                 .then(data => handleDetailsData({ data, id: uri }))
-                .catch(error => {
-                    console.error('ERROR', error);
-                    return toast.error(error, {
-                        position: toast.POSITION.TOP_RIGHT,
-                        draggable: false
-                    });
+                .catch(() => {
+                    toast.error(
+                        `Could not load the recipe. Please refresh and try again 🙁`,
+                        {
+                            position: toast.POSITION.BOTTOM_RIGHT,
+                            draggable: false
+                        }
+                    );
                 });
         } catch (error) {
             console.error('ERROR', error);

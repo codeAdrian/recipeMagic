@@ -6,17 +6,17 @@
     @media (--mq__tablet--min) {
         padding-bottom: var(--spacing__vertical--3);
         display: flex;
-        align-items: center;
     }
 }
 
 .recipe__header--image {
-    max-width: 300px;
     margin-bottom: var(--spacing__vertical--1);
+    max-width: 300px;
 
     @media (--mq__tablet--min) {
         margin-bottom: 0;
         padding-right: var(--spacing__horizontal--2);
+        max-width: calc(300px + var(--spacing__horizontal--2));
         flex-basis: calc(300px + var(--spacing__horizontal--2));
     }
 }
@@ -27,6 +27,9 @@
 }
 
 .recipe__header--content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     @media (--mq__tablet--min) {
         max-width: 820px;
         flex-grow: 1;
@@ -47,10 +50,16 @@
 
     article {
         padding-bottom: var(--spacing__vertical--2);
-        @media (--mq__tablet--min) {
+        @media (--mq__desktop--min) {
+            &:first-child {
+                padding-right: var(--spacing__horizontal--2);
+            }
+
             padding-bottom: var(--spacing__vertical--3);
             width: 50%;
+        }
 
+        @media (--mq__desktopMedium--min) {
             &:first-child {
                 padding-right: var(--spacing__horizontal--3);
             }

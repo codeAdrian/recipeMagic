@@ -1,3 +1,5 @@
+@import './variables.mediaqueries';
+
 html {
     line-height: var(--typography__lineHeight);
     font-size: calc(var(--typography__fontSize) * 1rem);
@@ -34,15 +36,25 @@ body {
 }
 
 .heading--level1 {
-    --heading__fontSize: var(--typography__xlarge);
-    --heading__lineHeight: calc(
-        var(--spacing__vertical--2) + var(--spacing__vertical--n1)
-    );
+    --heading__fontSize: var(--typography__large);
+    --heading__lineHeight: var(--spacing__vertical--2);
+    @media (--mq__tablet--min) {
+        --heading__fontSize: var(--typography__xlarge);
+        --heading__lineHeight: calc(
+            var(--spacing__vertical--2) + var(--spacing__vertical--n1)
+        );
+    }
 }
 
 .heading--level2 {
-    --heading__fontSize: var(--typography__large);
-    --heading__lineHeight: var(--spacing__vertical--2);
+    --heading__fontSize: var(--typography__larger);
+    --heading__lineHeight: calc(
+        var(--spacing__vertical--1) + var(--spacing__vertical--n2)
+    );
+    @media (--mq__tablet--min) {
+        --heading__fontSize: var(--typography__large);
+        --heading__lineHeight: var(--spacing__vertical--2);
+    }
 }
 
 .heading--level3 {
@@ -79,6 +91,7 @@ body {
 
 small {
     font-size: var(--typography__small);
+    display: block;
     padding-left: calc(
         var(--spacing__horizontal--n4) + var(--spacing__horizontal--n1)
     );

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 
 export const Footer = () => {
   return (
@@ -9,25 +10,75 @@ export const Footer = () => {
             <span className="logo__link footer__logo">Recipe Magic</span>
           </h1>
 
-          <p>uses the awesome Edamam API for recipes and nutrition data.</p>
-          <p>&copy; 2019 by Adrian Bece</p>
+          <p className="paragraph">
+            uses the awesome Edamam API for recipes and nutrition data.
+          </p>
+          <p className="paragraph">&copy; 2019 by Adrian Bece</p>
         </div>
         <div className="footer__col footer__col--links">
           <strong className="footer__sectionTitle">Recipe Magic</strong>
           <ul className="footer__list">
-            <li>Home</li>
-            <li>Saved Recipes</li>
-            <li>Recipes</li>
+            <li>
+              <Link className="footer__link" to="/">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link className="footer__link" to="/saved-recipes">
+                Saved Recipes
+              </Link>
+            </li>
+            <li>
+              <Link className="footer__link" to="/recipes">
+                All Recipes
+              </Link>
+            </li>
           </ul>
         </div>
 
-        <div>
+        <div className="footer__col footer__col--links">
           <strong className="footer__sectionTitle">codeAdrian</strong>
           <ul className="footer__list">
-            <li>Website</li>
-            <li>dev.to</li>
-            <li>Twitter</li>
-            <li>LinkedIn</li>
+            <li>
+              <a
+                href="http://codeadrian.github.io"
+                className="footer__link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                codeAdrian
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://dev.to/adrianbdesigns"
+                className="footer__link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                dev.to
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://twitter.com/AdrianBDesigns"
+                className="footer__link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Twitter
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.linkedin.com/in/adrianbece/"
+                className="footer__link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LinkedIn
+              </a>
+            </li>
           </ul>
         </div>
       </div>

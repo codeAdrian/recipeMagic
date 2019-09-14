@@ -27,6 +27,7 @@
 @import './component.toggleable';
 @import './component.recipeCategories';
 @import './component.savedRecipes';
+@import './component.heroBanner';
 
 @import './view.home';
 @import './view.recipes';

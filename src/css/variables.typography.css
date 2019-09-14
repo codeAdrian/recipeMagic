@@ -1,7 +1,13 @@
+@import './variables.mediaqueries';
+
 :root {
     --typography__lineHeight: 1.555;
-    --typography__fontSize--px: 18;
+    --typography__fontSize--px: 16;
     --typography__scale: 1.333;
+
+    @media (--mq__tablet--min) {
+        --typography__fontSize--px: 18;
+    }
 
     --typography__spacing--1px: calc((1 / 16) * 1rem);
 

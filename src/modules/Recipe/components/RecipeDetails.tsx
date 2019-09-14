@@ -13,8 +13,6 @@ export const RecipeDetails: React.FC<any> = ({ getRecipeDetails, id }) => {
   const recipe = useSelector((state: any) => state.recipe);
   const [{ savedRecipes }, { setItem }] = useSavedRecipes();
 
-  console.log('RECICI', recipe);
-
   useLayoutEffect(() => {
     getRecipeDetails(
       `http://www.edamam.com/ontologies/edamam.owl#recipe_${id}`
@@ -83,35 +81,44 @@ export const RecipeDetails: React.FC<any> = ({ getRecipeDetails, id }) => {
           <LazyImage src={image} alt={label} />
         </div>
         <div className="recipe__header--content">
-          <Link
-            className="button button--secondary recipe__link"
-            to="/recipes/list"
-          >
-            <FontAwesomeIcon icon={faArrowLeft} /> Return to recipes
-          </Link>
-          <h2 className="heading heading--level1 recipe__title--main">
-            {label}
-          </h2>
-          <p className="paragraph">
-            By{' '}
-            <a href={url} target="_blank" rel="nofollow noreferrer">
-              <strong className="gradient--text">{source}</strong>
-            </a>{' '}
-            |{' '}
-            {isRecipeSaved ? (
-              <span>Recipe Saved</span>
-            ) : (
-              <button onClick={handleSaveRecipe}>
-                <strong className="gradient--text">Save Recipe</strong>
-              </button>
-            )}
-          </p>
+          <div>
+            <Link
+              className="button button--secondary recipe__link"
+              to="/recipes/list"
+            >
+              <FontAwesomeIcon icon={faArrowLeft} /> Return to recipes
+            </Link>
+          </div>
+          <div>
+            <h2 className="heading heading--level1 recipe__title--main">
+              {label}
+            </h2>
+            <p className="paragraph">
+              By{' '}
+              <a href={url} target="_blank" rel="nofollow noreferrer">
+                <strong className="gradient--text">{source}</strong>
+              </a>{' '}
+              |{' '}
+              {isRecipeSaved ? (
+                <span>Recipe Saved</span>
+              ) : (
+                <button onClick={handleSaveRecipe}>
+                  <strong className="gradient--text">Save Recipe</strong>
+                </button>
+              )}
+            </p>
+          </div>
 
           <div>
             <strong className="gradient--text">{Math.ceil(calories)}</strong>{' '}
             calories | <strong className="gradient--text">{servings}</strong>{' '}
-            servings | <strong className="gradient--text">{totalTime}</strong>{' '}
-            minutes
+            servings
+            {parseInt(totalTime) > 0 && (
+              <>
+                | <strong className="gradient--text">{totalTime}</strong>{' '}
+                minutes
+              </>
+            )}
           </div>
         </div>
       </header>

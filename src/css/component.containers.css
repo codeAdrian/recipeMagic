@@ -8,7 +8,16 @@
     max-width: var(--container__width--medium);
 }
 
+.container--smaller {
+    max-width: var(--container__width--smaller);
+}
+
 .container--withPadding {
-    padding-left: var(--spacing__horizontal--1);
-    padding-right: var(--spacing__horizontal--1);
+    padding-left: var(--spacing__horizontal--n1);
+    padding-right: var(--spacing__horizontal--n1);
+
+    @media (--mq__tablet--min) {
+        padding-left: var(--spacing__horizontal--1);
+        padding-right: var(--spacing__horizontal--1);
+    }
 }

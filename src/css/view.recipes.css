@@ -2,6 +2,7 @@
 
 .filters {
     @media (--mq__desktop--min) {
+        margin-bottom: var(--spacing__vertical--1);
         display: flex;
         justify-content: space-between;
     }

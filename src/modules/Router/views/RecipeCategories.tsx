@@ -73,14 +73,14 @@ const RecipeCategories = ({ history }: any) => {
 
   return (
     <section className="recipeCategories">
-      <article className="recipeCategories__hero">
+      <article className="heroBanner recipeCategories__hero">
         <div className="recipeCategories__heroContent container container--withPadding">
           <h2 className="heading heading--level2 recipeCategories__heroTitle">
             Search through 1.7+ million recipes
           </h2>
           <Search {...state} {...api} />
         </div>
-        <div className="recipeCategories__heroBackground"></div>
+        <div className="heroBanner__background recipeCategories__heroBackground"></div>
       </article>
       <div className="container">
         {categories.map(({ items, title, key }: any) => (

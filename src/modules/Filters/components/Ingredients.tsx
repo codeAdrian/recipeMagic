@@ -35,8 +35,8 @@ export const Ingredients = () => {
 
   const handleSubmit = useCallback(
     event => {
-      if (isTimerActive) return;
       event.preventDefault();
+      if (isTimerActive) return;
       dispatch({
         type: FILTERS_TYPES.FILTERS_ADD,
         payload: { key: 'ingredients', data: [...ingredients, inputValue] }

@@ -24,7 +24,14 @@
     }
 
     @media (--mq__desktop--min) {
+        box-shadow: 0 0 0 0 var(--color__gray--lighter);
+        transition: box-shadow 0.2s ease-in-out;
         flex-basis: 25%;
+
+        &:hover,
+        &:active {
+            box-shadow: 0 0 5px 5px var(--color__gray--lighter);
+        }
     }
 }
 

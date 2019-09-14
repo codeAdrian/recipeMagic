@@ -2,11 +2,12 @@
 
 .home__hero {
     display: flex;
-    margin-bottom: var(--spacing__vertical--4);
+    margin-bottom: var(--spacing__vertical--3);
     flex-direction: column-reverse;
     margin-top: calc(-1 * var(--spacing__vertical--3));
 
     @media (--mq__tablet--min) {
+        margin-bottom: var(--spacing__vertical--4);
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
@@ -16,8 +17,13 @@
 }
 
 .home__hero--text {
-    padding-right: var(--spacing__horizontal--1);
-    padding-left: var(--spacing__horizontal--1);
+    padding-left: var(--spacing__horizontal--n1);
+    padding-right: var(--spacing__horizontal--n1);
+
+    @media (--mq__tablet--min) {
+        padding-left: var(--spacing__horizontal--1);
+        padding-right: var(--spacing__horizontal--1);
+    }
 
     @media (--mq__tablet--min) {
         transform: translateX(-200px);
@@ -60,11 +66,12 @@
 
 .home__card {
     flex-basis: 31%;
-    padding: var(--spacing__vertical--2) var(--spacing__horizontal--1);
+    padding: var(--spacing__vertical--1) var(--spacing__horizontal--1);
     box-shadow: 0 0 0.3em 0.15em var(--color__gray--lighter);
     margin-bottom: var(--spacing__vertical--2);
 
     @media (--mq__tablet--min) {
+        padding: var(--spacing__vertical--2) var(--spacing__horizontal--1);
         margin-bottom: 0;
     }
 }
