@@ -1,8 +1,9 @@
 import React, { useLayoutEffect, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { Helmet } from 'react-helmet';
 import { DietGraph } from './DietGraph';
-import { LazyImage, Accordion } from 'components';
+import { LazyImage } from 'components';
 import { Skeleton } from './Skeleton';
 import { useSavedRecipes } from 'hooks';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -58,7 +59,7 @@ export const RecipeDetails: React.FC<any> = ({ getRecipeDetails, id }) => {
       position: toast.POSITION.BOTTOM_RIGHT
     });
     setItem(savedRecipes);
-  }, [recipe, savedRecipes]);
+  }, [id, label, image, source, setItem, isRecipeSaved, savedRecipes]);
 
   if (!url || !label || !source || recipe.isLoading) return <Skeleton />;
 
@@ -76,6 +77,19 @@ export const RecipeDetails: React.FC<any> = ({ getRecipeDetails, id }) => {
 
   return (
     <section className="container container--withPadding">
+      <Helmet>
+        <meta
+          name="description"
+          content={`Ingredients, preparation instructions, diet and health info for ${label}`}
+        />
+        <meta name="og:title" content={`${label} | Recipe Magic`} />
+        <meta name="og:image" content={image} />
+        <meta
+          name="og:description"
+          content={`Ingredients, preparation instructions, diet and health info for ${label}`}
+        />
+        <title>{`${label} | Recipe Magic`}</title>
+      </Helmet>
       <header className="recipe__header">
         <div className="recipe__header--image">
           <LazyImage src={image} alt={label} />
@@ -95,7 +109,7 @@ export const RecipeDetails: React.FC<any> = ({ getRecipeDetails, id }) => {
             </h2>
             <p className="paragraph">
               By{' '}
-              <a href={url} target="_blank" rel="nofollow noreferrer">
+              <a href={url} target="_blank" rel="noopener noreferrer">
                 <strong className="gradient--text">{source}</strong>
               </a>{' '}
               |{' '}
@@ -135,7 +149,7 @@ export const RecipeDetails: React.FC<any> = ({ getRecipeDetails, id }) => {
           <h3 className="heading heading--level3">Preparation</h3>
           <p className="paragraph">
             This recipe is provided by{' '}
-            <a href={url} target="_blank" rel="nofollow noreferrer">
+            <a href={url} target="_blank" rel="noopener noreferrer">
               <strong className="gradient--text">{source}</strong>
             </a>
             . You can view the detailed preparation instructions by clicking the
@@ -144,7 +158,7 @@ export const RecipeDetails: React.FC<any> = ({ getRecipeDetails, id }) => {
           <a
             href={url}
             target="_blank"
-            rel="nofollow noreferrer"
+            rel="noopener noreferrer"
             className="button button--regular button--cta"
           >
             Preparation Instructions
@@ -155,7 +169,7 @@ export const RecipeDetails: React.FC<any> = ({ getRecipeDetails, id }) => {
       <div className="recipe__wrapper">
         <article>
           <h3 className="heading heading--level3">Nutrition</h3>
-          <Accordion>
+          <div className="accordion__content">
             <table>
               <tbody>
                 {Object.keys(totalDaily).map((key: string, index) => (
@@ -171,7 +185,7 @@ export const RecipeDetails: React.FC<any> = ({ getRecipeDetails, id }) => {
                 ))}
               </tbody>
             </table>
-          </Accordion>
+          </div>
         </article>
 
         <article>

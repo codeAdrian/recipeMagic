@@ -8,4 +8,3 @@ export * from './RecipeCard';
 export * from './Tooltip';
 export * from './Toggleable';
 export * from './LazyImage';
-export * from './Accordion';

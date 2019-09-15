@@ -61,7 +61,7 @@ export const Homepage = () => {
           </Link>
         </div>
         <div className="home__hero--image">
-          <img src={hero} />
+          <img alt="Plate with food" src={hero} />
         </div>
       </article>
 
@@ -74,7 +74,7 @@ export const Homepage = () => {
 
         <div className="home__wrapper">
           <div className="home__card">
-            <img className="home__image" src={step1} />
+            <img alt="Coffee cup" className="home__image" src={step1} />
             <h3 className="heading heading--level3 home__title">
               Search by recipe
             </h3>
@@ -84,7 +84,7 @@ export const Homepage = () => {
             </p>
           </div>
           <div className="home__card">
-            <img className="home__image" src={step2} />
+            <img alt="Turkey lunch" className="home__image" src={step2} />
             <h3 className="heading heading--level3 home__title">
               Search by ingredients
             </h3>
@@ -94,7 +94,7 @@ export const Homepage = () => {
             </p>
           </div>
           <div className="home__card">
-            <img className="home__image" src={step3} />
+            <img alt="Bowl of rice" className="home__image" src={step3} />
             <h3 className="heading heading--level3 home__title">
               Filter recipes
             </h3>

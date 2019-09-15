@@ -9,6 +9,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import step3 from 'assets/step1.png';
 import step2 from 'assets/step2.png';
 import step1 from 'assets/step3.png';
+import Helmet from 'react-helmet';
 
 export const SavedRecipes = () => {
   const [{ savedRecipes }, { setItem }] = useSavedRecipes();
@@ -66,16 +67,20 @@ export const SavedRecipes = () => {
       );
       setItem(savedRecipesNew);
     },
-    [savedRecipes]
+    [savedRecipes, setItem]
   );
 
   if (!savedRecipes || savedRecipes.length === 0)
     return (
       <section className="recipeList__start container container--withPadding">
+        <Helmet>
+          <meta name="og:title" content={`Saved Recipes | Recipe Magic`} />
+          <title>{`Saved Recipes | Recipe Magic`}</title>
+        </Helmet>
         <div className="recipeList__images">
-          <img src={step1} />
-          <img src={step2} />
-          <img src={step3} />
+          <img alt="" src={step1} />
+          <img alt="" src={step2} />
+          <img alt="" src={step3} />
         </div>
         <h2 className="heading heading--level1">
           <span className="gradient--text">No saved recipes found :(</span>
@@ -110,7 +115,7 @@ export const SavedRecipes = () => {
           {savedRecipes.map(({ image, id, label }: any, index: number) => (
             <li key={index} className="savedRecipes__link">
               <div className="savedRecipes__image">
-                <LazyImage src={image} />
+                <LazyImage alt={label} src={image} />
               </div>
               <div className="savedRecipes__content">
                 <div className="savedRecipes__title">

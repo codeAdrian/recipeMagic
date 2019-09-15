@@ -59,15 +59,18 @@ const RecipeCategories = ({ history }: any) => {
     fadeIn();
   }, []);
 
-  const handleSearchSubmit = useCallback(async (query: string) => {
-    if (isTimerActive) return;
-    await dispatch({ type: FILTERS_TYPES.FILTERS_RESET });
-    await dispatch({
-      type: FILTERS_TYPES.FILTERS_ADD,
-      payload: { key: 'searchQuery', data: query || '' }
-    });
-    if (query) await history.push('/recipes/list');
-  }, []);
+  const handleSearchSubmit = useCallback(
+    async (query: string) => {
+      if (isTimerActive) return;
+      await dispatch({ type: FILTERS_TYPES.FILTERS_RESET });
+      await dispatch({
+        type: FILTERS_TYPES.FILTERS_ADD,
+        payload: { key: 'searchQuery', data: query || '' }
+      });
+      if (query) await history.push('/recipes/list');
+    },
+    [dispatch, isTimerActive, history]
+  );
 
   const [state, api] = useSearch(handleSearchSubmit);
 
@@ -103,6 +106,7 @@ const RecipeCategories = ({ history }: any) => {
                     }}
                   >
                     <LazyImage
+                      alt={category}
                       className="recipeCategories__image"
                       src={image}
                     ></LazyImage>

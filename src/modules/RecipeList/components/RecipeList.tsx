@@ -7,6 +7,7 @@ import { Skeleton } from './Skeleton';
 import step3 from 'assets/step1.png';
 import step2 from 'assets/step2.png';
 import step1 from 'assets/step3.png';
+import { Helmet } from 'react-helmet';
 
 interface Props {
   getRecipeList: any;
@@ -22,9 +23,17 @@ export const RecipeList: React.FC<Props> = ({ getRecipeList, searchQuery }) => {
     getRecipeList(filters);
   }, [filters, getRecipeList]);
 
+  const MetaData = (
+    <Helmet>
+      <meta name="og:title" content={`Recipe Lists | Recipe Magic`} />
+      <title>{`Recipe Lists | Recipe Magic`}</title>
+    </Helmet>
+  );
+
   if (hits.length === 0 && !isLoading) {
     return (
       <div className="recipeList__start">
+        {MetaData}
         <div className="recipeList__images">
           <img alt="Step 1" src={step1} />
           <img alt="Step 2" src={step2} />
@@ -43,6 +52,7 @@ export const RecipeList: React.FC<Props> = ({ getRecipeList, searchQuery }) => {
 
   return (
     <>
+      {MetaData}
       <ul className="recipeList">
         {isLoading
           ? [...new Array(24)].map((item, index) => (
