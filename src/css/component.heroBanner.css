@@ -3,17 +3,15 @@
 .heroBanner {
     color: var(--color__gray--lightest);
     text-align: center;
-    min-height: 35vh;
+    min-height: 16rem;
     position: relative;
+    padding-top: var(--spacing__vertical--2);
+    padding-bottom: var(--spacing__vertical--2);
     margin-top: calc(-1 * var(--spacing__vertical--1));
     margin-bottom: var(--spacing__vertical--2);
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-
-    @media (--mq__tablet--min) {
-        margin-bottom: var(--spacing__vertical--3);
-    }
 }
 
 .heroBanner__background {

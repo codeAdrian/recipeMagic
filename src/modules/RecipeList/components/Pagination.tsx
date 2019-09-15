@@ -12,13 +12,16 @@ export const Pagination = ({ count, currentPage }: any) => {
   const currentPageNumber = parseInt(currentPage);
   const isMaxCount = count >= PAGES_MAX;
 
-  const handlePageClick = useCallback((event: any) => {
-    const { value } = event.currentTarget;
-    dispatch({
-      type: FILTERS_TYPES.FILTERS_ADD,
-      payload: { key: 'currentPage', data: value || 1 }
-    });
-  }, []);
+  const handlePageClick = useCallback(
+    (event: any) => {
+      const { value } = event.currentTarget;
+      dispatch({
+        type: FILTERS_TYPES.FILTERS_ADD,
+        payload: { key: 'currentPage', data: value || 1 }
+      });
+    },
+    [dispatch]
+  );
 
   if (totalPages <= 1) return null;
 

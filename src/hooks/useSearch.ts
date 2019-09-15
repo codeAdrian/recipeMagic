@@ -9,7 +9,7 @@ export const useSearch: any = (submitCallback: any) => {
         if (initialValue !== searchQuery) {
             setSearchQuery(initialValue);
         }
-    }, [initialValue]);
+    }, [initialValue, searchQuery]);
 
     const onSearchInputChange = useCallback(event => {
         const { value } = event.currentTarget || event.srcElement;

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { API_TIMER_TYPES } from 'modules';
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
@@ -20,7 +20,7 @@ export const ApiTimer = () => {
         onClose: () => dispatch({ type: API_TIMER_TYPES.API_TIMER_RESET })
       });
     }
-  }, [isActive]);
+  }, [isActive, dispatch]);
 
   return null;
 };

@@ -7,3 +7,7 @@
 .color--gray--light {
     color: var(--color__gray--light);
 }
+
+.margin--clear {
+    margin: 0;
+}

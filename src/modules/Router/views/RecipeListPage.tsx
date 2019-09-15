@@ -30,12 +30,15 @@ const RecipeListPage = ({ history }: any) => {
     fadeIn();
   }, []);
 
-  const handleSearchSubmit = useCallback((query: string) => {
-    dispatch({
-      type: FILTERS_TYPES.FILTERS_ADD,
-      payload: { key: 'searchQuery', data: query || '' }
-    });
-  }, []);
+  const handleSearchSubmit = useCallback(
+    (query: string) => {
+      dispatch({
+        type: FILTERS_TYPES.FILTERS_ADD,
+        payload: { key: 'searchQuery', data: query || '' }
+      });
+    },
+    [dispatch]
+  );
 
   const currentQuery = useSelector((state: any) => state.filters.searchQuery);
   const filters = useSelector((state: any) => state.filters);
@@ -49,7 +52,7 @@ const RecipeListPage = ({ history }: any) => {
     history.push({
       search: `?${queryString}`
     });
-  }, [queryString]);
+  }, [queryString, history]);
 
   const [state, api] = useSearch(handleSearchSubmit);
 

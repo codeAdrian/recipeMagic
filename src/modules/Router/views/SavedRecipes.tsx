@@ -98,7 +98,7 @@ export const SavedRecipes = () => {
       <article className="heroBanner recipeCategories__hero">
         <div className="container container--smaller container--withPadding">
           <h2 className="heading heading--level2">Saved Recipes</h2>
-          <p className="heading heading--level4">
+          <p className="heading heading--level4 margin--clear">
             Here you can find all recipes that you've saved, neatly sorted from
             oldest to newest.
           </p>

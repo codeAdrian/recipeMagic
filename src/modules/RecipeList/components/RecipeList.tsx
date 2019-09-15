@@ -20,15 +20,15 @@ export const RecipeList: React.FC<Props> = ({ getRecipeList, searchQuery }) => {
 
   useLayoutEffect(() => {
     getRecipeList(filters);
-  }, [filters]);
+  }, [filters, getRecipeList]);
 
   if (hits.length === 0 && !isLoading) {
     return (
       <div className="recipeList__start">
         <div className="recipeList__images">
-          <img src={step1} />
-          <img src={step2} />
-          <img src={step3} />
+          <img alt="Step 1" src={step1} />
+          <img alt="Step 2" src={step2} />
+          <img alt="Step 3" src={step3} />
         </div>
         <h2 className="heading heading--level1">
           <span className="gradient--text">No recipes found :(</span>

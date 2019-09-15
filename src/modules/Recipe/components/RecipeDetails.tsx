@@ -17,7 +17,7 @@ export const RecipeDetails: React.FC<any> = ({ getRecipeDetails, id }) => {
     getRecipeDetails(
       `http://www.edamam.com/ontologies/edamam.owl#recipe_${id}`
     );
-  }, []);
+  }, [getRecipeDetails, id]);
 
   const {
     calories,
@@ -175,7 +175,7 @@ export const RecipeDetails: React.FC<any> = ({ getRecipeDetails, id }) => {
         </article>
 
         <article>
-          <h3 className="heading heading--level4">Diet</h3>
+          <h3 className="heading heading--level3">Diet</h3>
           <p className="paragraph">{labels.join(', ')}</p>
           <DietGraph digest={digest} />
         </article>

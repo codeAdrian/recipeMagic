@@ -30,7 +30,7 @@ export const Ingredients = () => {
         payload: { key: 'ingredients', data: newValues }
       });
     },
-    [ingredients]
+    [ingredients, dispatch, isTimerActive]
   );
 
   const handleSubmit = useCallback(
@@ -43,7 +43,7 @@ export const Ingredients = () => {
       });
       setInputValue('');
     },
-    [ingredients, inputValue]
+    [ingredients, inputValue, isTimerActive, dispatch]
   );
   return (
     <Toggleable
