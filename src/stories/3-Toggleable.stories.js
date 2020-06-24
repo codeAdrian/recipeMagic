@@ -1,10 +1,7 @@
-import { configure, addDecorator } from '@storybook/react';
 import React from 'react';
-import { action } from '@storybook/addon-actions';
-import { Button } from '@storybook/react/demo';
 import { Toggleable } from 'components';
 
-import 'stories/main.css';
+import 'css/index.css';
 
 export default {
     title: 'Toggleable',

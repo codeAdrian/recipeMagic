@@ -3,9 +3,9 @@ import { action } from '@storybook/addon-actions';
 import { Button } from '@storybook/react/demo';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faTimes, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
-import 'stories/main.css';
+import 'css/index.css';
 
 export default {
     title: 'Button',
