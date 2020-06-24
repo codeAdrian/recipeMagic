@@ -1,0 +1,21 @@
+{
+    "calories": 511.85772752169066,
+    "ingredients": [
+        { "text": "1 tablespoon butter", "weight": 14.2 },
+        { "text": "1 tablespoon flour", "weight": 7.8124999998679145 },
+        { "text": "1 cup milk", "weight": 244 },
+        {
+            "text": "2 ounces dried beef lunch meat (Buddy brand is recommended), sliced into 1/2-inch pieces",
+            "weight": 56.69904625
+        },
+        { "text": "Salt and pepper", "weight": 2.289441152498806 },
+        { "text": "Salt and pepper", "weight": 1.144720576249403 },
+        { "text": "Pinch grated nutmeg", "weight": 0.14583333352071937 },
+        { "text": "Dash Worcestershire sauce", "weight": 0.7161458330790678 },
+        { "text": "2 slices white bread", "weight": 58 }
+    ],
+    "image": "https://www.edamam.com/web-img/8eb/8eb4bcfbe8c89c21fcaecdc4e7ac6da5.jpg",
+    "label": "Dinner Tonight: Chipped Beef Gravy",
+    "source": "Serious Eats",
+    "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_3cfba4e01db6e203abda1fa0c0c1da97"
+}

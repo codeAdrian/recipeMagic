@@ -9,7 +9,7 @@ export const RecipeCard = ({
   image,
   label,
   source,
-  uri
+  uri,
 }: any) => {
   return (
     <li className="recipeCard">
