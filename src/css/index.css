@@ -539,6 +539,7 @@ svg {
 }
 button {
     border: none;
+    min-width: 200px;
     margin: 0;
     padding: 0;
     width: auto;

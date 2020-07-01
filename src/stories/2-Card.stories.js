@@ -13,4 +13,21 @@ export default {
     component: RecipeCard,
 };
 
-export const Default = () => <RecipeCard {...recipe} />;
+export const Default = () => (
+    <div className="recipeList">
+        <RecipeCard {...recipe} />
+    </div>
+);
+
+export const List = () => (
+    <div className="recipeList">
+        <RecipeCard {...recipe} />
+        <RecipeCard {...recipe} />
+        <RecipeCard {...recipe} />
+        <RecipeCard {...recipe} />
+        <RecipeCard {...recipe} />
+        <RecipeCard {...recipe} />
+        <RecipeCard {...recipe} />
+        <RecipeCard {...recipe} />
+    </div>
+);

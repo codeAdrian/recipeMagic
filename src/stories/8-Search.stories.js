@@ -1,8 +1,9 @@
 import React from 'react';
+import { action } from '@storybook/addon-actions';
 import { addDecorator } from '@storybook/react';
 import StoryRouter from 'storybook-react-router';
 import { Provider as ReduxProvider } from 'react-redux';
-import { Header } from 'components';
+import { Search } from 'modules';
 
 import { store } from 'store';
 
@@ -16,11 +17,14 @@ addDecorator(withProvider);
 addDecorator(StoryRouter());
 
 export default {
-    title: 'Header',
-    component: Header,
-    parameters: {
-        chromatic: { viewports: [320, 768, 1280], delay: 5000 },
-    },
+    title: 'Search',
+    component: Search,
 };
 
-export const Default = () => <Header />;
+export const Default = () => (
+    <Search
+        onSearchInputChange={action('click')}
+        onSearchSubmit={action('click')}
+        searchQuery="Search query"
+    />
+);
