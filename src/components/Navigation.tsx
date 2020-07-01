@@ -22,6 +22,16 @@ export const Navigation = () => {
           <NavLink
             activeClassName="nav__link--active"
             className="nav__link"
+            exact
+            to="/about-us"
+          >
+            About<span className="nav__link--hidden"> us</span>
+          </NavLink>
+        </li>
+        <li className="nav__listItem">
+          <NavLink
+            activeClassName="nav__link--active"
+            className="nav__link"
             to="/recipes"
           >
             Recipes
@@ -34,7 +44,7 @@ export const Navigation = () => {
             exact
             to="/saved-recipes"
           >
-            Saved <span className="nav__link--hidden">Recipes</span> (
+            Saved<span className="nav__link--hidden"> Recipes</span> (
             {savedRecipesNum})
           </NavLink>
         </li>
